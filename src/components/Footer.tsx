@@ -45,82 +45,64 @@ export default function Footer() {
   };
 
   return (
-    <footer style={{
-      background: "#0d0d0d",
-      borderTop: "1px solid rgba(255,255,255,0.06)",
-      marginTop: 0,
-      padding: "40px 40px 24px",
-      fontFamily: "inherit",
-    }}>
-      <div style={{ display: "grid", gridTemplateColumns: "220px repeat(5, 1fr)", gap: 32, marginBottom: 32 }}>
-        {/* Logo col */}
-        <div style={{ paddingRight: 16 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-            <span style={{ fontSize: 26 }}>🖐</span>
-            <div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 800, color: "#c0392b", lineHeight: 1 }}>
-                PhimMoi<sup style={{ fontSize: 9, verticalAlign: "super" }}>®</sup>
+    <footer className="bg-bg border-t border-white/5 mt-20 py-16 px-6 md:px-12 lg:px-20 font-sans">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-10 mb-12">
+          {/* Brand Logo & Info */}
+          <div className="col-span-2 md:col-span-4 lg:col-span-2">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
+                <span className="text-white text-xl">🖐</span>
               </div>
-              <div style={{ fontSize: 9, color: "#9896a0", marginTop: 1 }}>Phim Mới Nhất Chất</div>
+              <div>
+                <div className="font-serif text-[18px] font-black text-accent leading-none">
+                  PhimMoi<sup className="text-[9px] align-super">®</sup>
+                </div>
+                <div className="text-[10px] text-white/40 mt-1 uppercase tracking-widest font-bold">Premium Cinema</div>
+              </div>
             </div>
+            <p className="text-[13px] text-white/40 leading-relaxed max-w-[280px]">
+              Website xem phim trực tuyến chất lượng cao, cập nhật phim mới nhất mỗi ngày, xem miễn phí hàng nghìn bộ phim HD/4K đa thể loại.
+            </p>
           </div>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "#9896a0", marginBottom: 6 }}>PhimMoi and Chill</div>
-          <p style={{ fontSize: 11, color: "rgba(152,150,160,0.75)", lineHeight: 1.7 }}>
-            Website xem phim trực tuyến chất lượng cao, cập nhật phim mới nhất vietSub mỗi ngày, xem miễn phí hàng nghìn bộ phim HD/4K đa thể loại.
-          </p>
-        </div>
 
-        {/* Link columns */}
-        {cols.map((col) => (
-          <div key={col.title}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "#c0392b", marginBottom: 14, letterSpacing: "0.01em" }}>
-              {col.title}
+          {/* Link columns */}
+          {cols.map((col) => (
+            <div key={col.title}>
+              <h3 className="text-[14px] font-black text-white mb-6 uppercase tracking-wider">
+                {col.title}
+              </h3>
+              <ul className="flex flex-col gap-3">
+                {col.links.map((link) => (
+                  <li key={link}>
+                    <button
+                      onClick={() => handleLink(link)}
+                      className="text-[13px] text-white/40 hover:text-accent transition-colors text-left cursor-pointer bg-transparent border-none p-0"
+                    >
+                      {link}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
-              {col.links.map((link) => (
-                <a
-                  key={link}
-                  onClick={() => handleLink(link)}
-                  style={{
-                    fontSize: 12, color: "rgba(152,150,160,0.85)",
-                    cursor: "pointer", textDecoration: "none",
-                    transition: "color 0.18s", display: "block",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#f0eee8")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(152,150,160,0.85)")}
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Bottom bar */}
-      <div style={{
-        borderTop: "1px solid rgba(255,255,255,0.05)",
-        paddingTop: 18,
-        display: "flex", alignItems: "center",
-        justifyContent: "space-between", flexWrap: "wrap", gap: 10,
-      }}>
-        <div style={{ fontSize: 11, color: "rgba(152,150,160,0.55)" }}>
-          © 2025 PhimMoi.Net — Xem phim HD miễn phí, nhanh nhất, chất lượng nhất.
-        </div>
-        <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-          {["HD", "4K", "VietSub", "Thuyết Minh"].map((tag) => (
-            <span
-              key={tag}
-              style={{
-                fontSize: 10, color: "rgba(152,150,160,0.5)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                borderRadius: 4, padding: "2px 8px",
-                fontWeight: 600, letterSpacing: "0.04em",
-              }}
-            >
-              {tag}
-            </span>
           ))}
+        </div>
+
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-[12px] text-white/20 text-center md:text-left">
+            © 2026 PhimMoi.Net — Xem phim HD miễn phí, nhanh nhất, chất lượng nhất.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {["HD", "4K", "VietSub", "Thuyết Minh"].map((tag) => (
+              <span
+                key={tag}
+                className="text-[10px] text-white/30 border border-white/10 rounded-md px-3 py-1 font-black tracking-widest uppercase"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
