@@ -21,14 +21,14 @@ const genreCategories = [
   { label: "Tội Phạm", genre: "Tội phạm" },
 ];
 
-export default function HomeClient({ 
-  movies, 
-  featuredMovies, 
-  newMovies, 
-  topRated, 
-  actionMovies, 
-  animatedMovies 
-}: { 
+export default function HomeClient({
+  movies,
+  featuredMovies,
+  newMovies,
+  topRated,
+  actionMovies,
+  animatedMovies
+}: {
   movies: Movie[],
   featuredMovies: Movie[],
   newMovies: Movie[],

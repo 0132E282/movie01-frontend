@@ -18,7 +18,7 @@ export default function HistoryRoute() {
   };
 
   const handlePlay = (m: Movie, ep = 1) => {
-    router.push(getWatchUrl(m.slug, m.episodes ? ep : undefined));
+    router.push(getWatchUrl(m.slug, m.type === "series" ? ep : undefined));
   };
 
   return (

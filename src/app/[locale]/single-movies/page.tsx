@@ -34,7 +34,7 @@ function SingleContent() {
   const filtered = useMemo(() => {
     let list = MOVIES.filter((m) => {
       // Filter by type: single movies (episodes === null or 1)
-      if (m.episodes && m.episodes > 1) return false;
+      if (m.type !== "single") return false;
 
       if (genre !== "Tất cả" && !m.genre.includes(genre)) return false;
       if (year !== "Tất cả" && String(m.year) !== year) return false;

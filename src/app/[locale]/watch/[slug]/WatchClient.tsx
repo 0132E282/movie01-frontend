@@ -1,5 +1,6 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+
+import { useState, useEffect } from "react";
 import { useRouter } from "@/i18n/routing";
 import type { Movie } from "@/types";
 import Navbar from "@/components/Navbar";
@@ -11,11 +12,18 @@ import { getMovieUrl, getWatchUrl } from "@/lib/routes";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-export default function WatchClient({ movie, currentEp, related }: { movie: Movie, currentEp: number, related: Movie[] }) {
+export default function WatchClient({ 
+  movie, 
+  currentEp, 
+  related 
+}: { 
+  movie: Movie; 
+  currentEp: number; 
+  related: Movie[]; 
+}) {
   const router = useRouter();
-  const { favorites, addToHistory } = useAppContext();
+  const { addToHistory } = useAppContext();
 
-  // episodes are 0-indexed in the data array, but currentEp is 1-indexed
   const [currentEpIndex, setCurrentEpIndex] = useState(Math.max(0, currentEp - 1));
   const [currentServerIndex, setCurrentServerIndex] = useState(0);
 
@@ -23,11 +31,10 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
     if (movie) {
       addToHistory(movie.id);
     }
-  }, [movie?.id]);
+  }, [movie?.id, addToHistory]);
 
-  // Update ep index if prop changes (e.g. from URL navigation)
   useEffect(() => {
-      setCurrentEpIndex(Math.max(0, currentEp - 1));
+    setCurrentEpIndex(Math.max(0, currentEp - 1));
   }, [currentEp]);
 
   const isSeries = movie.type === "series";
@@ -37,7 +44,7 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
 
   const handlePlay = (m: Movie, epIndex: number) => {
     setCurrentEpIndex(epIndex);
-    setCurrentServerIndex(0); // Reset server when changing episode
+    setCurrentServerIndex(0);
     router.push(getWatchUrl(m.slug, epIndex + 1));
   };
 
@@ -51,9 +58,7 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
       <div className="pt-14 min-h-screen bg-bg">
         <div className="mx-auto max-w-[1300px] px-6 py-10 animate-in fade-in duration-500">
           <div className="grid grid-cols-[1fr_320px] gap-10 items-start">
-            {/* Left Column: Player & Info */}
             <div className="min-w-0">
-              {/* Server Selector */}
               <div className="flex gap-3 mb-6 flex-wrap">
                 {activeEpisode?.server.map((s, idx) => (
                   <button
@@ -72,7 +77,6 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
                 ))}
               </div>
 
-              {/* Player Container */}
               <div className="rounded-xl overflow-hidden shadow-2xl border border-white/5 bg-black aspect-video mb-6 relative group">
                 <VideoPlayer
                   url={videoUrl}
@@ -82,7 +86,6 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
                 />
               </div>
 
-              {/* Movie Title & Meta */}
               <div className="mb-8">
                 <h1 className="text-[28px] font-black mb-2 tracking-tight text-white leading-tight">
                   {movie.title} {isSeries && <span className="text-accent ml-2">Tập {currentEpIndex + 1}</span>}
@@ -104,7 +107,6 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
                 </div>
               </div>
 
-              {/* Info Card */}
               <div className="bg-bg-2 border border-white/5 rounded-xl p-5 flex gap-5 mb-8">
                 <div className="w-[100px] shrink-0 rounded-lg overflow-hidden border border-white/10 shadow-lg">
                   <img src={movie.thumb} alt="" className="w-full h-full object-cover" />
@@ -122,7 +124,6 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
                 </div>
               </div>
 
-              {/* Episode List */}
               <div className="bg-bg-2 border border-white/5 rounded-xl overflow-hidden">
                 <div className="flex items-center gap-4 px-5 py-4 border-b border-white/5 bg-white/2">
                   <span className="font-black text-[15px] text-text uppercase">
@@ -148,7 +149,6 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
               </div>
             </div>
 
-            {/* Right Column: Recommendations */}
             <div className="sticky top-20">
               <div className="flex items-center gap-2 font-black text-[16px] text-white mb-6 uppercase tracking-wider">
                 <span className="w-1.5 h-6 bg-accent rounded-full" />
@@ -176,6 +176,7 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
                     </div>
                   </div>
                 ))}
+              </div>
             </div>
           </div>
         </div>

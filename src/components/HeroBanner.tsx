@@ -88,9 +88,9 @@ export default function HeroBanner({ movies, onPlay, onDetail, onToggleFavorite,
                   <span className="bg-accent text-white text-[10px] font-black px-2.5 py-1 rounded tracking-widest uppercase">
                     {movie.quality}
                   </span>
-                  {movie.episodes && (
+                  {movie.type === "series" && (
                     <span className="bg-bg-3 border border-white/10 text-text text-[10px] font-bold px-2.5 py-1 rounded tracking-wide uppercase">
-                      Hoàn tất ({movie.episodes}/{movie.episodes})
+                      Hoàn tất ({movie.episodes.length} tập)
                     </span>
                   )}
                   {movie.tags.slice(0, 2).map((t) => (

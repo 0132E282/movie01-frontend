@@ -16,7 +16,7 @@ function SeriesContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { favorites, toggleFavorite, addToHistory } = useAppContext();
-  
+
   // State for filters
   const [genre, setGenre] = useState(searchParams.get("genre") || "Tất cả");
   const [country, setCountry] = useState(searchParams.get("country") || "Tất cả");
@@ -34,7 +34,7 @@ function SeriesContent() {
   const filtered = useMemo(() => {
     let list = MOVIES.filter((m) => {
       // Filter by type: series (episodes !== null && > 1)
-      if (!m.episodes || m.episodes <= 1) return false;
+      if (m.type !== "series") return false;
 
       if (genre !== "Tất cả" && !m.genre.includes(genre)) return false;
       if (year !== "Tất cả" && String(m.year) !== year) return false;
@@ -47,7 +47,7 @@ function SeriesContent() {
     else if (sort === "oldest") list = [...list].sort((a, b) => a.year - b.year);
     else if (sort === "rating") list = [...list].sort((a, b) => b.rating - a.rating);
     else if (sort === "views") list = [...list].sort((a, b) => parseFloat(b.views) - parseFloat(a.views));
-    
+
     return list;
   }, [genre, year, quality, country, sort]);
 
@@ -64,15 +64,15 @@ function SeriesContent() {
     if (genre !== "Tất cả") parts.push(genre);
     if (country !== "Tất cả") parts.push(country);
     if (year !== "Tất cả") parts.push(`Năm ${year}`);
-    
+
     if (parts.length > 0) return `Phim bộ ${parts.join(" - ")}`;
     return "Phim Bộ Mới Cập Nhật";
   };
 
   const activeFiltersCount = [
-    genre !== "Tất cả", 
-    year !== "Tất cả", 
-    quality !== "Tất cả", 
+    genre !== "Tất cả",
+    year !== "Tất cả",
+    quality !== "Tất cả",
     country !== "Tất cả"
   ].filter(Boolean).length;
 

@@ -48,7 +48,7 @@ export default function AppBreadcrumb() {
 
   // ── Special Case: Movie Detail & Watch ──
   if (movie && (paths.includes("movie") || paths.includes("watch"))) {
-    const isSeries = !!(movie.episodes && movie.episodes > 1);
+    const isSeries = movie.type === "series";
     const categoryTitle = isSeries ? "Phim Bộ" : "Phim Lẻ";
     const categoryPath = isSeries ? "/series-movies" : "/single-movies";
     

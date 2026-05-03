@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://phimmoi01-frontend.vercel.app
+
+# Sitemaps
+Sitemap: https://phimmoi01-frontend.vercel.app/sitemap.xml
+Sitemap: https://phimmoi01-frontend.vercel.app/server-sitemap.xml
