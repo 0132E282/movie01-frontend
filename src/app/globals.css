@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Tất cả token lấy từ tailwind.config.ts — đừng thêm màu trực tiếp ở đây */
+    --font: "DM Sans", sans-serif;
+    --font2: "Playfair Display", serif;
+    --radius: 0.625rem;
+
+    /* shadcn/ui CSS variable mapping */
+    --background: 0 0% 4%;
+    --foreground: 43 11% 93%;
+    --card: 240 9% 8%;
+    --card-foreground: 43 11% 93%;
+    --popover: 237 19% 12%;
+    --popover-foreground: 43 11% 93%;
+    --primary: 4 61% 46%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 237 19% 12%;
+    --secondary-foreground: 252 4% 59%;
+    --muted: 237 19% 12%;
+    --muted-foreground: 252 4% 59%;
+    --accent: 237 19% 12%;
+    --accent-foreground: 43 11% 93%;
+    --destructive: 4 61% 46%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.07;
+    --input: 240 12% 16%;
+    --ring: 4 61% 46%;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    @apply bg-bg text-text font-sans;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { @apply bg-bg; }
+  ::-webkit-scrollbar-thumb { @apply bg-bg-3 rounded; }
+
+  input, button, select { font-family: inherit; }
+  a { color: inherit; text-decoration: none; }
+}
+
+@layer utilities {
+  .hide-scroll::-webkit-scrollbar { display: none; }
+  .hide-scroll { scrollbar-width: none; }
+  .font-display { font-family: var(--font2); }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
