@@ -105,8 +105,8 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-[200] bg-[#0d0d0d]/95 backdrop-blur-md border-b border-white/5 h-14 flex items-center justify-between px-4 lg:px-8 shadow-lg">
-        <div className="flex items-center gap-1 lg:gap-6">
-          <button 
+        <div className="flex items-center gap-1 lg:gap-8">
+          <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden p-2 text-text-muted hover:text-white transition-colors shrink-0"
           >
@@ -116,10 +116,9 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <span className="text-[19px] lg:text-[22px] font-black text-accent tracking-tighter">PhimMoi<sup className="text-[10px]">®</sup></span>
           </Link>
-        </div>
 
           {/* Desktop Nav links */}
-          <div className="hidden lg:flex items-stretch h-full ml-4">
+          <div className="hidden lg:flex items-stretch h-full ml-2">
             {navLinks.map((l) => {
               const active = isActive(l.path, l.id);
               const hasDropdown = !!l.dropdown;
@@ -128,16 +127,16 @@ export default function Navbar() {
               return (
                 <div
                   key={l.id}
-                  className="relative h-full"
+                  className="relative h-full flex items-center"
                   onMouseEnter={() => hasDropdown && handleMouseEnter(l.id)}
                   onMouseLeave={() => hasDropdown && handleMouseLeave()}
                 >
                   <Link
                     href={l.path as any}
                     className={cn(
-                      "px-4 cursor-pointer text-[13px] font-black tracking-wide whitespace-nowrap transition-all flex items-center h-full border-b-2",
-                      active 
-                        ? "text-accent border-accent" 
+                      "px-3 xl:px-4 cursor-pointer text-[13px] font-black tracking-wide whitespace-nowrap transition-all flex items-center h-14 border-b-2",
+                      active
+                        ? "text-accent border-accent"
                         : "text-text-muted border-transparent hover:text-white"
                     )}
                   >
@@ -175,6 +174,7 @@ export default function Navbar() {
               );
             })}
           </div>
+        </div>
 
         {/* Right side: Search + User */}
         <div className="flex items-center gap-2 lg:gap-4 shrink-0">
@@ -201,7 +201,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Search Icon */}
-          <button 
+          <button
             className="lg:hidden p-2 text-text-muted hover:text-white transition-colors shrink-0"
             onClick={() => setIsMobileMenuOpen(true)}
           >
@@ -243,23 +243,23 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu Sidebar/Drawer */}
-      <div 
+      <div
         className={cn(
           "fixed inset-0 z-[250] lg:hidden transition-all duration-300",
           isMobileMenuOpen ? "visible" : "invisible"
         )}
       >
         {/* Overlay */}
-        <div 
+        <div
           className={cn(
             "absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300",
             isMobileMenuOpen ? "opacity-100" : "opacity-0"
           )}
           onClick={() => setIsMobileMenuOpen(false)}
         />
-        
+
         {/* Sidebar */}
-        <div 
+        <div
           className={cn(
             "absolute top-0 left-0 bottom-0 w-[280px] bg-bg-2 border-r border-white/5 shadow-2xl transition-transform duration-300 flex flex-col",
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
