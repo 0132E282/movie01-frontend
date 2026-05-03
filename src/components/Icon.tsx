@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 const paths: Record<string, React.ReactNode> = {
   play: <polygon points="5,3 19,12 5,21" fill="currentColor" stroke="none" />,
   pause: <><rect x="6" y="4" width="4" height="16" /><rect x="14" y="4" width="4" height="16" /></>,
@@ -39,10 +41,12 @@ export default function Icon({
   name,
   size = 20,
   color = "currentColor",
+  className,
 }: {
   name: string;
   size?: number;
   color?: string;
+  className?: string;
 }) {
   return (
     <svg
@@ -54,9 +58,10 @@ export default function Icon({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="shrink-0 block"
+      className={cn("shrink-0 block", className)}
     >
       {paths[name]}
     </svg>
   );
 }
+
