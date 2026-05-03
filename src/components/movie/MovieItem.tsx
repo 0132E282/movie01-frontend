@@ -32,8 +32,8 @@ export default function MovieItem({
       else if (lang.includes("vietsub")) parts.push("Vietsub");
     }
 
-    if (movie.episodes) {
-      parts.push(`Tập ${movie.episodes}`);
+    if (movie.type === "series") {
+      parts.push(`Tập ${movie.episodes.length}`);
     }
 
     return parts.filter(Boolean).join(" · ");
