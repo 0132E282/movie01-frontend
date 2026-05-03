@@ -1,0 +1,84 @@
+
+> phimmoi-frontend@0.1.0 build /Users/hoangphuc01975/Documents/developers/template/movie-1/frontend
+> NODE_OPTIONS="--localstorage-file=./.node-localstorage" next build
+
+   ▲ Next.js 15.3.8
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 0ms
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/13) ...
+   Generating static pages (3/13) 
+   Generating static pages (6/13) 
+   Generating static pages (9/13) 
+ ✓ Generating static pages (13/13)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /_not-found                            983 B         103 kB
+├ ● /[locale]                            5.58 kB         145 kB
+├   └ /vi
+├ ● /[locale]/catalog                    1.42 kB         144 kB
+├   └ /vi/catalog
+├ ● /[locale]/country                      845 B         137 kB
+├   └ /vi/country
+├ ƒ /[locale]/country/[slug]             1.44 kB         144 kB
+├ ● /[locale]/favorites                  1.96 kB         138 kB
+├   └ /vi/favorites
+├ ● /[locale]/genre                        849 B         137 kB
+├   └ /vi/genre
+├ ƒ /[locale]/genre/[slug]               1.31 kB         144 kB
+├ ● /[locale]/history                    1.99 kB         138 kB
+├   └ /vi/history
+├ ƒ /[locale]/movie/[slug]                4.2 kB         143 kB
+├ ● /[locale]/search                     2.39 kB         139 kB
+├   └ /vi/search
+├ ● /[locale]/series-movies              1.43 kB         144 kB
+├   └ /vi/series-movies
+├ ● /[locale]/single-movies              1.44 kB         144 kB
+├   └ /vi/single-movies
+├ ƒ /[locale]/watch/[slug]               2.59 kB         142 kB
+├ ● /[locale]/year                         849 B         137 kB
+├   └ /vi/year
+└ ƒ /[locale]/year/[slug]                1.43 kB         144 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/259-e1dfe414c65bce40.js       46.5 kB
+  ├ chunks/bce54841-0ceaa337ded5d34e.js  53.2 kB
+  └ other shared chunks (total)          1.92 kB
+
+
+ƒ Middleware                             66.9 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> phimmoi-frontend@0.1.0 postbuild /Users/hoangphuc01975/Documents/developers/template/movie-1/frontend
+> next-sitemap
+
+✨ [next-sitemap] Loading next-sitemap config: file:///Users/hoangphuc01975/Documents/developers/template/movie-1/frontend/next-sitemap.config.js
+✅ [next-sitemap] Generation completed
+┌───────────────┬────────┐
+│ (index)       │ Values │
+├───────────────┼────────┤
+│ indexSitemaps │ 1      │
+│ sitemaps      │ 1      │
+└───────────────┴────────┘
+-----------------------------------------------------
+ SITEMAP INDICES 
+-----------------------------------------------------
+
+   ○ https://phimmoi01-frontend.vercel.app/sitemap.xml
+
+
+-----------------------------------------------------
+ SITEMAPS 
+-----------------------------------------------------
+
+   ○ https://phimmoi01-frontend.vercel.app/sitemap-0.xml
+
+
