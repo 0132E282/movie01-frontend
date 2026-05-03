@@ -4,25 +4,21 @@ import type { Movie } from "@/types";
 import { Loader2, AlertCircle } from "lucide-react";
 
 interface Props {
+  url: string;
   movie: Movie;
   episode?: number | null;
-  onEpChange?: (ep: number) => void;
   isSeries?: boolean;
-  server?: string;
 }
 
-export default function VideoPlayer({ movie, episode, isSeries, server }: Props) {
+export default function VideoPlayer({ url, movie, episode, isSeries }: Props) {
   const [loading, setLoading] = useState(true);
 
-  const currentEp = episode?.toString() || "1";
-  const embedUrl = movie.episode_links?.[currentEp];
-
-  // Reset loading state when episode changes
+  // Reset loading state when url changes
   useEffect(() => {
-    if (embedUrl) setLoading(true);
-  }, [embedUrl]);
+    if (url) setLoading(true);
+  }, [url]);
 
-  if (!embedUrl) {
+  if (!url) {
     return (
       <div className="relative w-full aspect-video bg-bg-2 flex flex-col items-center justify-center border border-white/5 rounded-xl overflow-hidden group">
         <img
@@ -56,12 +52,12 @@ export default function VideoPlayer({ movie, episode, isSeries, server }: Props)
       )}
 
       <iframe
-        src={embedUrl}
+        src={url}
         className="w-full h-full border-0 relative z-10"
         allowFullScreen
         onLoad={() => setLoading(false)}
         allow="autoplay; encrypted-media; picture-in-picture"
-        title={`${movie.title} - ${isSeries ? `Tập ${currentEp}` : "Full"}`}
+        title={`${movie.title} - ${isSeries ? `Tập ${episode}` : "Full"}`}
       />
     </div>
   );

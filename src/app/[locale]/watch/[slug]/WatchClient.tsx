@@ -11,14 +11,13 @@ import { getMovieUrl, getWatchUrl } from "@/lib/routes";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-const SERVERS = ["Server VIP 1", "Server VIP 2", "Server VIP 3"];
-
 export default function WatchClient({ movie, currentEp, related }: { movie: Movie, currentEp: number, related: Movie[] }) {
   const router = useRouter();
-  const { favorites, toggleFavorite, addToHistory } = useAppContext();
+  const { favorites, addToHistory } = useAppContext();
 
-  const [subType, setSubType] = useState("vietsub");
-  const [server, setServer] = useState(SERVERS[0]);
+  // episodes are 0-indexed in the data array, but currentEp is 1-indexed
+  const [currentEpIndex, setCurrentEpIndex] = useState(Math.max(0, currentEp - 1));
+  const [currentServerIndex, setCurrentServerIndex] = useState(0);
 
   useEffect(() => {
     if (movie) {
@@ -26,11 +25,20 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
     }
   }, [movie?.id]);
 
-  const totalEps = movie.episodes || 1;
-  const isSeries = totalEps > 1;
+  // Update ep index if prop changes (e.g. from URL navigation)
+  useEffect(() => {
+      setCurrentEpIndex(Math.max(0, currentEp - 1));
+  }, [currentEp]);
 
-  const handlePlay = (m: Movie, ep = 1) => {
-    router.push(getWatchUrl(m.slug, ep));
+  const isSeries = movie.type === "series";
+  const activeEpisode = movie.episodes[currentEpIndex] || movie.episodes[0];
+  const activeServer = activeEpisode?.server[currentServerIndex] || activeEpisode?.server[0];
+  const videoUrl = activeServer?.url || "";
+
+  const handlePlay = (m: Movie, epIndex: number) => {
+    setCurrentEpIndex(epIndex);
+    setCurrentServerIndex(0); // Reset server when changing episode
+    router.push(getWatchUrl(m.slug, epIndex + 1));
   };
 
   const handleSelect = (m: Movie) => {
@@ -47,19 +55,19 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
             <div className="min-w-0">
               {/* Server Selector */}
               <div className="flex gap-3 mb-6 flex-wrap">
-                {SERVERS.map((s) => (
+                {activeEpisode?.server.map((s, idx) => (
                   <button
-                    key={s}
-                    onClick={() => setServer(s)}
+                    key={idx}
+                    onClick={() => setCurrentServerIndex(idx)}
                     className={cn(
                       "px-5 py-2.5 rounded-xl text-[13px] font-black transition-all border flex items-center gap-2.5 whitespace-nowrap shadow-sm",
-                      server === s 
+                      currentServerIndex === idx 
                         ? "bg-accent border-accent text-white shadow-lg shadow-accent/25 scale-[1.02]" 
                         : "bg-bg-3 border-white/5 text-text-muted hover:border-white/20 hover:text-text hover:bg-bg-4"
                     )}
                   >
                     <Icon name="server" size={15} />
-                    {s}
+                    {s.title}
                   </button>
                 ))}
               </div>
@@ -67,18 +75,17 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
               {/* Player Container */}
               <div className="rounded-xl overflow-hidden shadow-2xl border border-white/5 bg-black aspect-video mb-6 relative group">
                 <VideoPlayer
+                  url={videoUrl}
                   movie={movie}
-                  episode={isSeries ? currentEp : null}
-                  onEpChange={(ep) => handlePlay(movie, ep)}
+                  episode={currentEpIndex + 1}
                   isSeries={isSeries}
-                  server={server}
                 />
               </div>
 
               {/* Movie Title & Meta */}
               <div className="mb-8">
                 <h1 className="text-[28px] font-black mb-2 tracking-tight text-white leading-tight">
-                  {movie.title} {isSeries && <span className="text-accent ml-2">Tập {currentEp}</span>}
+                  {movie.title} {isSeries && <span className="text-accent ml-2">Tập {currentEpIndex + 1}</span>}
                 </h1>
                 <div className="flex items-center gap-4 text-[13.5px] text-text-muted flex-wrap">
                   <div className="flex items-center gap-1.5">
@@ -118,41 +125,25 @@ export default function WatchClient({ movie, currentEp, related }: { movie: Movi
               {/* Episode List */}
               <div className="bg-bg-2 border border-white/5 rounded-xl overflow-hidden">
                 <div className="flex items-center gap-4 px-5 py-4 border-b border-white/5 bg-white/2">
-                  <span className="font-black text-[15px] text-text">DANH SÁCH TẬP</span>
-                  <div className="flex gap-2">
-                    {["vietsub", "thuyet-minh"].map((t) => (
-                      <button
-                        key={t}
-                        onClick={() => setSubType(t)}
-                        className={cn(
-                          "px-3 py-1.5 rounded-md text-[11.5px] font-bold transition-all",
-                          subType === t ? "bg-accent text-white" : "bg-bg-3 text-text-muted hover:bg-bg-4"
-                        )}
-                      >
-                        {t === "vietsub" ? "Vietsub" : "Thuyết Minh"}
-                      </button>
-                    ))}
-                  </div>
+                  <span className="font-black text-[15px] text-text uppercase">
+                      {isSeries ? "Danh sách tập" : "Đang phát"}
+                  </span>
                 </div>
                 <div className="p-5 flex flex-wrap gap-2 max-h-[300px] overflow-y-auto hide-scroll">
-                  {isSeries ? (
-                    Array.from({ length: totalEps }, (_, i) => i + 1).map((ep) => (
-                      <button
-                        key={ep}
-                        onClick={() => handlePlay(movie, ep)}
-                        className={cn(
-                          "w-[54px] h-[38px] rounded-lg text-[13px] font-bold transition-all border",
-                          currentEp === ep 
-                            ? "bg-accent border-accent text-white shadow-lg shadow-accent/20" 
-                            : "bg-bg-3 border-white/5 text-text-muted hover:border-white/20 hover:text-text"
-                        )}
-                      >
-                        {ep}
-                      </button>
-                    ))
-                  ) : (
-                    <button className="h-10 px-6 rounded-lg bg-accent text-white font-bold text-[13px]">Máy chủ #1</button>
-                  )}
+                  {movie.episodes.map((ep, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handlePlay(movie, idx)}
+                      className={cn(
+                        "min-w-[54px] h-[38px] px-3 rounded-lg text-[13px] font-bold transition-all border",
+                        currentEpIndex === idx 
+                          ? "bg-accent border-accent text-white shadow-lg shadow-accent/20" 
+                          : "bg-bg-3 border-white/5 text-text-muted hover:border-white/20 hover:text-text"
+                      )}
+                    >
+                      {ep.title}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>

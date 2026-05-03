@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "@/i18n/routing";
 import type { Movie } from "@/types";
 import Navbar from "@/components/Navbar";
@@ -17,7 +17,6 @@ export default function MovieDetailClient({ movie, related }: { movie: Movie, re
   const { favorites, toggleFavorite, addToHistory } = useAppContext();
 
   const [activeTab, setActiveTab] = useState("episodes");
-  const [subType, setSubType] = useState("vietsub");
   const [showTrailer, setShowTrailer] = useState(false);
 
   useEffect(() => {
@@ -26,8 +25,7 @@ export default function MovieDetailClient({ movie, related }: { movie: Movie, re
     }
   }, [movie?.id]);
 
-  const totalEps = movie.episodes || 1;
-  const isSeries = totalEps > 1;
+  const isSeries = movie.type === "series";
   const hasTrailer = !!movie.trailer;
 
   const handlePlay = (m: Movie, ep = 1) => {
@@ -81,7 +79,7 @@ export default function MovieDetailClient({ movie, related }: { movie: Movie, re
                 <Badge variant="quality" className="px-2.5 py-1 text-[10px]">{movie.quality}</Badge>
                 {isSeries && (
                   <Badge variant="secondary" className="px-2.5 py-1 text-[10px] bg-white/5 text-text-muted border-none">
-                    {totalEps} Tập
+                    {movie.episodes.length} Tập
                   </Badge>
                 )}
               </div>
@@ -183,7 +181,7 @@ export default function MovieDetailClient({ movie, related }: { movie: Movie, re
           <div className="mt-12">
             <div className="flex border-b border-white/5 mb-6">
               {[
-                { id: "episodes", label: isSeries ? "Danh sách tập" : "Xem ngay" },
+                { id: "episodes", label: isSeries ? "Danh sách tập" : "Danh sách server" },
                 { id: "suggestion", label: "Có thể bạn thích" },
               ].map((tab) => (
                 <button
@@ -202,47 +200,20 @@ export default function MovieDetailClient({ movie, related }: { movie: Movie, re
 
             {activeTab === "episodes" && (
               <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                <div className="flex gap-2 mb-6">
-                  {["vietsub", "thuyet-minh"].map((t) => (
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-2">
+                  {movie.episodes.map((ep, idx) => (
                     <button
-                      key={t}
-                      onClick={() => setSubType(t)}
+                      key={idx}
+                      onClick={() => handlePlay(movie, idx + 1)}
                       className={cn(
-                        "px-4 py-2 rounded-lg text-[13px] font-bold transition-all",
-                        subType === t ? "bg-accent text-white" : "bg-bg-3 text-text-muted hover:bg-bg-4"
+                        "h-10 px-4 rounded-lg text-[13px] font-bold transition-all border",
+                        "bg-bg-3 border-white/5 text-text-muted hover:border-white/20 hover:text-text"
                       )}
                     >
-                      {t === "vietsub" ? "Vietsub" : "Thuyết Minh"}
+                      {ep.title}
                     </button>
                   ))}
                 </div>
-
-                {isSeries ? (
-                  <div className="grid grid-cols-[repeat(auto-fill,minmax(60px,1fr))] gap-2">
-                    {Array.from({ length: totalEps }, (_, i) => i + 1).map((ep) => (
-                      <button
-                        key={ep}
-                        onClick={() => handlePlay(movie, ep)}
-                        className={cn(
-                          "h-10 rounded-lg text-[13px] font-bold transition-all border",
-                          "bg-bg-3 border-white/5 text-text-muted hover:border-white/20 hover:text-text"
-                        )}
-                      >
-                        {ep}
-                      </button>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="flex flex-col gap-4">
-                    <button
-                      onClick={() => handlePlay(movie, 1)}
-                      className="w-full max-w-[200px] h-12 bg-bg-3 border border-white/5 rounded-lg flex items-center justify-center gap-3 text-[14px] font-bold text-text hover:bg-bg-4 hover:border-accent/30 transition-all group"
-                    >
-                      <Icon name="play" size={16} className="fill-accent group-hover:scale-110 transition-transform" />
-                      Máy chủ #1
-                    </button>
-                  </div>
-                )}
               </div>
             )}
 

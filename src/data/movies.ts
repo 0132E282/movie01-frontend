@@ -4,6 +4,7 @@ export const MOVIES: Movie[] = [
   // ── Phim lẻ ──────────────────────────────────────────────────────
   {
     id: 1,
+    type: "single",
     slug: "dune-phan-hai",
     title: "Dune: Phần Hai",
     year: 2024,
@@ -24,12 +25,20 @@ export const MOVIES: Movie[] = [
     position_show_slider: 2,
     position_featured: 2,
     tags: ["Mới", "Hot"],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://embed18.streamc.xyz/embed.php?hash=61969f7888a4948dfb0e75a1258d94ca" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=Way9Dexny3w",
-    episode_links: { "1": "https://embed18.streamc.xyz/embed.php?hash=61969f7888a4948dfb0e75a1258d94ca" }
   },
   {
     id: 2,
+    type: "single",
     slug: "oppenheimer",
     title: "Oppenheimer",
     year: 2023,
@@ -50,11 +59,20 @@ export const MOVIES: Movie[] = [
     backdrop: "https://image.tmdb.org/t/p/original/rLb2cwF3Pazuxaj0sRXQ037tGI1.jpg",
     desc: "Câu chuyện về cuộc đời của J. Robert Oppenheimer — cha đẻ của bom nguyên tử — và quá trình nghiên cứu dự án Manhattan.",
     tags: ["Oscar"],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=uYPbbksJxIg"
   },
   {
     id: 3,
+    type: "single",
     slug: "avengers-doomsday",
     title: "Avengers: Doomsday",
     year: 2026,
@@ -73,10 +91,19 @@ export const MOVIES: Movie[] = [
     desc: "Các Avengers tập hợp một lần nữa đối mặt với Doctor Doom — kẻ đe dọa phá hủy toàn bộ đa vũ trụ.",
     is_featured: true, is_show_slider: true, position_show_slider: 1, position_featured: 1,
     tags: ["Mới", "Đề cử"],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
   },
   {
     id: 4,
+    type: "single",
     slug: "joker-folie-a-deux",
     title: "Joker: Điên có đôi",
     year: 2024,
@@ -94,11 +121,20 @@ export const MOVIES: Movie[] = [
     desc: "Arthur Fleck phải đối mặt với bản thân và tình yêu điên rồ trong trại giam Arkham.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: [],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=_OKAwz2UXB0"
   },
   {
     id: 5,
+    type: "single",
     slug: "mission-impossible-the-final-reckoning",
     title: "Mission: Impossible – The Final Reckoning",
     year: 2025,
@@ -116,11 +152,20 @@ export const MOVIES: Movie[] = [
     desc: "Ethan Hunt và IMF đối mặt với AI bất tử đe dọa kiểm soát toàn bộ hệ thống vũ khí hạt nhân thế giới.",
     is_featured: true, is_show_slider: true, position_show_slider: 1, position_featured: 1,
     tags: ["Hot"],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=2m1drlOZSDw"
   },
   {
     id: 6,
+    type: "single",
     slug: "inside-out-2",
     title: "Inside Out 2",
     year: 2024,
@@ -141,11 +186,20 @@ export const MOVIES: Movie[] = [
     position_show_slider: 1,
     position_featured: 1,
     tags: ["Gia đình"],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=LEjhY976l4M"
   },
   {
     id: 7,
+    type: "single",
     slug: "deadpool-wolverine",
     title: "Deadpool & Wolverine",
     year: 2024,
@@ -163,11 +217,20 @@ export const MOVIES: Movie[] = [
     desc: "Deadpool và Wolverine bắt tay nhau trong cuộc phiêu lưu đa vũ trụ đầy hài hước.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: ["Hot"],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=73_1biulkYk"
   },
   {
     id: 10,
+    type: "single",
     slug: "gladiator-ii",
     title: "Gladiator II",
     year: 2024,
@@ -188,11 +251,20 @@ export const MOVIES: Movie[] = [
     position_show_slider: 1,
     position_featured: 1,
     tags: [],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=4rgYUipGJNo"
   },
   {
     id: 11,
+    type: "single",
     slug: "kingdom-of-the-planet-of-the-apes",
     title: "Kingdom of the Planet of the Apes",
     year: 2024,
@@ -210,11 +282,20 @@ export const MOVIES: Movie[] = [
     desc: "Một vương quốc khỉ mới nổi lên đe dọa loài người. Một chú khỉ trẻ bắt đầu hành trình tìm lại sự thật.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: [],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=Kdr5oedn7q8"
   },
   {
     id: 12,
+    type: "single",
     slug: "twisters",
     title: "Twisters",
     year: 2024,
@@ -232,11 +313,20 @@ export const MOVIES: Movie[] = [
     desc: "Chuyên gia khí tượng đối mặt với những cơn lốc xoáy nguy hiểm nhất lịch sử.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: [],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=Jm27YjLnPHc"
   },
   {
     id: 13,
+    type: "single",
     slug: "venom-the-last-dance",
     title: "Venom: The Last Dance",
     year: 2024,
@@ -254,11 +344,20 @@ export const MOVIES: Movie[] = [
     desc: "Eddie Brock và Venom đang bỏ trốn. Cả hai phải đưa ra quyết định cuối cùng về số phận của mình.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: [],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=__2bjWxk5vg"
   },
   {
     id: 14,
+    type: "single",
     slug: "furiosa-a-mad-max-saga",
     title: "Furiosa: A Mad Max Saga",
     year: 2024,
@@ -276,11 +375,20 @@ export const MOVIES: Movie[] = [
     desc: "Nguồn gốc của Furiosa — từ cô bé bị bắt cóc đến chiến binh huyền thoại trong thế giới hoang tàn.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: ["Mới"],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=XJMuhwVlca4"
   },
   {
     id: 21,
+    type: "single",
     slug: "godzilla-x-kong-the-new-empire",
     title: "Godzilla x Kong: The New Empire",
     year: 2024,
@@ -298,11 +406,26 @@ export const MOVIES: Movie[] = [
     desc: "Godzilla và Kong buộc phải hợp sức chống lại mối đe dọa bí ẩn ẩn nấp trong lòng đất.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: ["Hot"],
-    episodes: null,
+    episodes: [
+      {
+        'title': 'full',
+        'server': [
+          {
+            'title': 'Server 1',
+            'url': 'https://embed3.streamc.xyz/embed.php?hash=619c579a32e6ac095370c1b1b2259224'
+          },
+          {
+            'title': 'Server 2',
+            'url': 'https://www.youtube.com/watch?v=lV1OOlGwExM'
+          }
+        ]
+      },
+    ],
     trailer: "https://www.youtube.com/watch?v=lV1OOlGwExM"
   },
   {
     id: 22,
+    type: "single",
     slug: "interstellar",
     title: "Interstellar",
     year: 2014,
@@ -320,11 +443,20 @@ export const MOVIES: Movie[] = [
     desc: "Một nhóm phi hành gia du hành qua lỗ sâu đục trong không gian để tìm kiếm ngôi nhà mới cho nhân loại.",
     is_featured: true, is_show_slider: true, position_show_slider: 1, position_featured: 1,
     tags: ["Kinh điển"],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=zSWdZVtXT7E"
   },
   {
     id: 23,
+    type: "single",
     slug: "the-dark-knight",
     title: "The Dark Knight",
     year: 2008,
@@ -345,11 +477,20 @@ export const MOVIES: Movie[] = [
     position_show_slider: 1,
     position_featured: 1,
     tags: ["Kinh điển", "Oscar"],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=EXeTwQWrcwY"
   },
   {
     id: 24,
+    type: "single",
     slug: "spider-man-no-way-home",
     title: "Spider-Man: No Way Home",
     year: 2021,
@@ -370,11 +511,20 @@ export const MOVIES: Movie[] = [
     position_show_slider: 1,
     position_featured: 1,
     tags: ["Hot"],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=JfVOs4VSpmA"
   },
   {
     id: 25,
+    type: "single",
     slug: "everything-everywhere-all-at-once",
     title: "Everything Everywhere All at Once",
     year: 2022,
@@ -395,11 +545,20 @@ export const MOVIES: Movie[] = [
     position_show_slider: 1,
     position_featured: 1,
     tags: ["Oscar"],
-    episodes: null,
-    trailer: true
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
+    trailer: "https://www.youtube.com/watch?v=lV1OOlGwExM"
   },
   {
     id: 26,
+    type: "single",
     slug: "top-gun-maverick",
     title: "Top Gun: Maverick",
     year: 2022,
@@ -415,10 +574,19 @@ export const MOVIES: Movie[] = [
     thumb: "https://m.media-amazon.com/images/M/MV5BMDBkZDNjMWEtOTdmMi00NmExLTg5MmMtNTFlYTJlNWY5YTdmXkEyXkFqcGc@._V1_.jpg",
     backdrop: "https://www.thecoretheatresolihull.co.uk/media/5584/maverick_web.jpg?anchor=center&mode=crop&width=825&height=440&rnd=133075612540000000",
     desc: "Pete 'Maverick' Mitchell trở lại huấn luyện thế hệ phi công mới cho nhiệm vụ nguy hiểm nhất trong sự nghiệp.",
-    is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: ["Hot"], episodes: null, trailer: "https://www.youtube.com/watch?v=giXco2jaZ_4"
+    is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: ["Hot"], episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ], trailer: "https://www.youtube.com/watch?v=giXco2jaZ_4"
   },
   {
     id: 27,
+    type: "single",
     slug: "black-panther-wakanda-forever",
     title: "Black Panther: Wakanda Forever",
     year: 2022,
@@ -436,11 +604,20 @@ export const MOVIES: Movie[] = [
     desc: "Wakanda phải chiến đấu để bảo vệ đất nước sau sự ra đi của T'Challa và đối mặt với đế quốc dưới nước Talokan.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: [],
-    episodes: null,
-    trailer: true
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
+    trailer: "https://www.youtube.com/watch?v=lV1OOlGwExM"
   },
   {
     id: 28,
+    type: "single",
     slug: "the-batman",
     title: "The Batman",
     year: 2022,
@@ -458,11 +635,20 @@ export const MOVIES: Movie[] = [
     desc: "Batman điều tra chuỗi tội ác bí ẩn của Riddler — kẻ thủ phạm phơi bày bộ mặt thật của tầng lớp quyền lực Gotham.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: [],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=mqqft22S8RE"
   },
   {
     id: 29,
+    type: "single",
     slug: "nope",
     title: "Nope",
     year: 2022,
@@ -480,11 +666,20 @@ export const MOVIES: Movie[] = [
     desc: "Hai anh em quản lý nông trại nuôi ngựa cho phim ảnh phát hiện thứ gì đó bất thường trên bầu trời.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: [],
-    episodes: null,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=In8fuzj3Yck"
   },
   {
     id: 30,
+    type: "single",
     slug: "doctor-strange-in-the-multiverse-of-madness",
     title: "Doctor Strange in the Multiverse of Madness", year: 2022,
     genre: ["Hành động", "Siêu anh hùng", "Kinh dị"],
@@ -494,12 +689,21 @@ export const MOVIES: Movie[] = [
     views: "19.8M",
     country: "Mỹ",
     language: "Tiếng Việt",
-    director: "Sam Raimi", cast: ["Benedict Cumberbatch", "Elizabeth Olsen", "Rachel McAdams", "Xochitl Gomez"], thumb: "https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg", backdrop: "https://image.tmdb.org/t/p/original/if8BMWxSXgTpAZCJKQT0Lbe65yq.jpg", desc: "Doctor Strange và Scarlet Witch phải đối mặt với những phiên bản nguy hiểm của chính họ xuyên đa vũ trụ.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: [], episodes: null, trailer: true
+    director: "Sam Raimi", cast: ["Benedict Cumberbatch", "Elizabeth Olsen", "Rachel McAdams", "Xochitl Gomez"], thumb: "https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg", backdrop: "https://image.tmdb.org/t/p/original/if8BMWxSXgTpAZCJKQT0Lbe65yq.jpg", desc: "Doctor Strange và Scarlet Witch phải đối mặt với những phiên bản nguy hiểm của chính họ xuyên đa vũ trụ.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: [], episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ], trailer: "https://www.youtube.com/watch?v=lV1OOlGwExM"
   },
 
   // ── Phim bộ ──────────────────────────────────────────────────────
   {
     id: 15,
+    type: "single",
     slug: "bang-ho-trong-sinh",
     title: "Băng Hồ Trọng Sinh",
     year: 2026,
@@ -520,12 +724,464 @@ export const MOVIES: Movie[] = [
     position_show_slider: 1,
     position_featured: 1,
     tags: ["Mới"],
-    episodes: 40,
+    episodes: [
+      {
+        title: "Tập 1",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=1" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 2",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=2" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 3",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=3" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 4",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=4" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 5",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=5" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 6",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=6" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 7",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=7" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 8",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=8" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 9",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=9" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 10",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=10" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 11",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=11" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 12",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=12" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 13",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=13" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 14",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=14" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 15",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=15" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 16",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=16" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 17",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=17" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 18",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=18" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 19",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=19" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 20",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=20" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 21",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=21" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 22",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=22" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 23",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=23" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 24",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=24" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 25",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=25" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 26",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=26" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 27",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=27" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 28",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=28" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 29",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=29" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 30",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=30" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 31",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=31" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 32",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=32" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 33",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=33" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 34",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=34" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 35",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=35" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 36",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=36" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 37",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=37" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 38",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=38" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 39",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=39" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 40",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=40" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=R0_mS_7F2yY"
   },
-  { id:16, slug: "gia-dinh-la-so-mot", title:"Gia Đình Là Số Một", year:2025, genre:["Hài","Gia đình"], rating:7.5, duration:"45m", quality:"HD", views:"8.2M", country:"Hàn Quốc", language:"Thuyết minh", director:"Kim Sung-ho", cast:["Lee Joon-gi","Moon Chae-won","Choi Jin-hyuk"], thumb:"https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg", backdrop:"https://image.tmdb.org/t/p/original/xg27NrXi7VXCGUr7MG75UqLl6Vg.jpg", desc:"Câu chuyện hài hước về một gia đình Hàn Quốc với những tình huống dở khóc dở cười trong cuộc sống hiện đại.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags:["Hot"], episodes:24, trailer:"https://www.youtube.com/watch?v=W0q0C-X4oXY" },
+  { id:16,
+    type: "single", slug: "gia-dinh-la-so-mot", title:"Gia Đình Là Số Một", year:2025, genre:["Hài","Gia đình"], rating:7.5, duration:"45m", quality:"HD", views:"8.2M", country:"Hàn Quốc", language:"Thuyết minh", director:"Kim Sung-ho", cast:["Lee Joon-gi","Moon Chae-won","Choi Jin-hyuk"], thumb:"https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg", backdrop:"https://image.tmdb.org/t/p/original/xg27NrXi7VXCGUr7MG75UqLl6Vg.jpg", desc:"Câu chuyện hài hước về một gia đình Hàn Quốc với những tình huống dở khóc dở cười trong cuộc sống hiện đại.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags:["Hot"], episodes: [
+      {
+        title: "Tập 1",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=1" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 2",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=2" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 3",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=3" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 4",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=4" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 5",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=5" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 6",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=6" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 7",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=7" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 8",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=8" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 9",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=9" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 10",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=10" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 11",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=11" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 12",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=12" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 13",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=13" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 14",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=14" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 15",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=15" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 16",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=16" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 17",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=17" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 18",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=18" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 19",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=19" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 20",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=20" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 21",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=21" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 22",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=22" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 23",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=23" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 24",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=24" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ], trailer:"https://www.youtube.com/watch?v=W0q0C-X4oXY" },
   {
     id: 17,
+    type: "single",
     slug: "squid-game-2",
     title: "Squid Game 2",
     year: 2024,
@@ -541,10 +1197,61 @@ export const MOVIES: Movie[] = [
     thumb: "https://image.tmdb.org/t/p/w500/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg",
     backdrop: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQYJgU57sx3hGQ3F0E149N__TAw7tZqxqmwQ2_HlqnTfFpFz6Cq7Eb8bQFOOq7obz3JKtnjLzb1cF2gfSF5T9H0FdkZzg4KGB8qe585xKioh888ncOHLIhW1CnVnOsUzjkVnEKvO4QDcNeUqC9qn4P1hlCJg.jpg?r=0f1",
     desc: "Gi-hun trở lại trò chơi sinh tử với quyết tâm phá hủy nó từ bên trong.",
-    is_featured: true, is_show_slider: true, position_show_slider: 1, position_featured: 1, tags: ["Hot", "Mới"], episodes: 7, trailer: "https://www.youtube.com/watch?v=Jm03V0n_Oxc"
+    is_featured: true, is_show_slider: true, position_show_slider: 1, position_featured: 1, tags: ["Hot", "Mới"], episodes: [
+      {
+        title: "Tập 1",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=1" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 2",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=2" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 3",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=3" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 4",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=4" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 5",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=5" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 6",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=6" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 7",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=7" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ], trailer: "https://www.youtube.com/watch?v=Jm03V0n_Oxc"
   },
   {
     id: 18,
+    type: "single",
     slug: "the-last-of-us-season-2",
     title: "The Last of Us Season 2",
     year: 2025,
@@ -561,10 +1268,68 @@ export const MOVIES: Movie[] = [
     backdrop: "https://s10019.cdn.ncms.io/wp-content/uploads/2025/03/The-Last-Of-Us-S2_HO_KA_16x9_v03.jpg.jpeg",
     desc: "Joel và Ellie tiếp tục hành trình trong thế giới hậu tận thế, đối mặt với những lựa chọn tàn khốc hơn bao giờ hết.",
     is_featured: true, is_show_slider: true, position_show_slider: 1, position_featured: 1,
-    tags: ["Mới", "Hot"], episodes: 8, trailer: "https://www.youtube.com/watch?v=z8X2P8N8_Uo"
+    tags: ["Mới", "Hot"], episodes: [
+      {
+        title: "Tập 1",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=1" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 2",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=2" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 3",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=3" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 4",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=4" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 5",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=5" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 6",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=6" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 7",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=7" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 8",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=8" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ], trailer: "https://www.youtube.com/watch?v=z8X2P8N8_Uo"
   },
   {
     id: 19,
+    type: "single",
     slug: "stranger-things-season-5",
     title: "Stranger Things Season 5",
     year: 2025,
@@ -576,10 +1341,75 @@ export const MOVIES: Movie[] = [
     country: "Mỹ",
     language: "Tiếng Việt",
     director: "Matt & Ross Duffer",
-    cast: ["Millie Bobby Brown", "Finn Wolfhard", "Noah Schnapp", "Sadie Sink"], thumb: "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg", backdrop: "https://image.tmdb.org/t/p/original/rcA17r3HxVDrWtgAf5OxDV3XHLT.jpg", desc: "Mùa cuối cùng của Stranger Things — đội nhóm Hawkins đối mặt với Vecna lần cuối để cứu thế giới.", is_featured: true, is_show_slider: true, position_show_slider: 1, position_featured: 1, tags: ["Mới", "Hot"], episodes: 9, trailer: "https://www.youtube.com/watch?v=M9UfXU5p9rY"
+    cast: ["Millie Bobby Brown", "Finn Wolfhard", "Noah Schnapp", "Sadie Sink"], thumb: "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg", backdrop: "https://image.tmdb.org/t/p/original/rcA17r3HxVDrWtgAf5OxDV3XHLT.jpg", desc: "Mùa cuối cùng của Stranger Things — đội nhóm Hawkins đối mặt với Vecna lần cuối để cứu thế giới.", is_featured: true, is_show_slider: true, position_show_slider: 1, position_featured: 1, tags: ["Mới", "Hot"], episodes: [
+      {
+        title: "Tập 1",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=1" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 2",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=2" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 3",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=3" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 4",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=4" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 5",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=5" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 6",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=6" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 7",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=7" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 8",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=8" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 9",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=9" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ], trailer: "https://www.youtube.com/watch?v=M9UfXU5p9rY"
   },
   {
     id: 20,
+    type: "single",
     slug: "wednesday-season-2",
     title: "Wednesday Season 2",
     year: 2024,
@@ -594,10 +1424,68 @@ export const MOVIES: Movie[] = [
     cast: ["Jenna Ortega", "Emma Myers", "Hunter Doohan", "Percy Hynes White"],
     thumb: "https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/iHSwvRVsRyxpX7FE7GbviaDvgGZ.jpg",
-    desc: "Wednesday Addams trở lại trường Nevermore với những bí ẩn tối tăm hơn và kẻ thù mạnh mẽ hơn.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: ["Hot"], episodes: 8, trailer: "https://www.youtube.com/watch?v=Wp8K2l2xW2k"
+    desc: "Wednesday Addams trở lại trường Nevermore với những bí ẩn tối tăm hơn và kẻ thù mạnh mẽ hơn.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: ["Hot"], episodes: [
+      {
+        title: "Tập 1",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=1" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 2",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=2" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 3",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=3" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 4",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=4" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 5",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=5" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 6",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=6" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 7",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=7" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 8",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=8" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ], trailer: "https://www.youtube.com/watch?v=Wp8K2l2xW2k"
   },
   {
     id: 31,
+    type: "single",
     slug: "arcane-season-2",
     title: "Arcane Season 2",
     year: 2024, genre: ["Hoạt hình", "Hành động", "Tâm lý"],
@@ -614,11 +1502,76 @@ export const MOVIES: Movie[] = [
     desc: "Cuộc chiến giữa Piltover và Zaun leo thang, số phận của chị em Jinx và Vi cuối cùng cũng được định đoạt.",
     is_featured: true, is_show_slider: true, position_show_slider: 1, position_featured: 1,
     tags: ["Mới", "Hot"],
-    episodes: 9,
+    episodes: [
+      {
+        title: "Tập 1",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=1" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 2",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=2" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 3",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=3" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 4",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=4" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 5",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=5" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 6",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=6" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 7",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=7" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 8",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=8" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 9",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=9" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=f2O6mQkFiiE"
   },
   {
-    id: 32, slug: "house-of-the-dragon-season-2", title: "House of the Dragon Season 2", year: 2024, genre: ["Sử thi", "Hành động", "Tâm lý"],
+    id: 32,
+    type: "single", slug: "house-of-the-dragon-season-2", title: "House of the Dragon Season 2", year: 2024, genre: ["Sử thi", "Hành động", "Tâm lý"],
     rating: 7.4,
     duration: "60m",
     quality: "4K",
@@ -632,18 +1585,512 @@ export const MOVIES: Movie[] = [
     desc: "Cuộc nội chiến gia tộc Targaryen bùng nổ khi hai người thừa kế cùng tranh giành Ngai Vàng Sắt.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: ["Mới"],
-    episodes: 8,
+    episodes: [
+      {
+        title: "Tập 1",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=1" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 2",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=2" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 3",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=3" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 4",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=4" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 5",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=5" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 6",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=6" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 7",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=7" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 8",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=8" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=83AByU0SjT4"
   },
   {
     id: 33,
+    type: "single",
     slug: "breaking-bad", title: "Breaking Bad", year: 2022,
     genre: ["Tội phạm", "Tâm lý"],
     rating: 9.5,
-    duration: "47m", quality: "HD", views: "55.8M", country: "Mỹ", language: "Tiếng Việt", director: "Vince Gilligan", cast: ["Bryan Cranston", "Aaron Paul", "Anna Gunn", "Dean Norris"], thumb: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg", backdrop: "https://image.tmdb.org/t/p/original/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg", desc: "Giáo viên hóa học bị ung thư Walter White bắt đầu sản xuất ma túy để kiếm tiền cho gia đình, dần biến thành tội phạm khét tiếng.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: ["Kinh điển"], episodes: 62, trailer: "https://www.youtube.com/watch?v=HhesaQXLuRY"
+    duration: "47m", quality: "HD", views: "55.8M", country: "Mỹ", language: "Tiếng Việt", director: "Vince Gilligan", cast: ["Bryan Cranston", "Aaron Paul", "Anna Gunn", "Dean Norris"], thumb: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg", backdrop: "https://image.tmdb.org/t/p/original/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg", desc: "Giáo viên hóa học bị ung thư Walter White bắt đầu sản xuất ma túy để kiếm tiền cho gia đình, dần biến thành tội phạm khét tiếng.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: ["Kinh điển"], episodes: [
+      {
+        title: "Tập 1",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=1" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 2",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=2" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 3",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=3" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 4",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=4" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 5",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=5" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 6",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=6" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 7",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=7" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 8",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=8" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 9",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=9" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 10",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=10" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 11",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=11" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 12",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=12" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 13",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=13" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 14",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=14" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 15",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=15" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 16",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=16" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 17",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=17" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 18",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=18" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 19",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=19" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 20",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=20" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 21",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=21" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 22",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=22" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 23",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=23" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 24",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=24" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 25",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=25" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 26",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=26" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 27",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=27" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 28",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=28" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 29",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=29" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 30",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=30" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 31",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=31" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 32",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=32" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 33",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=33" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 34",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=34" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 35",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=35" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 36",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=36" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 37",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=37" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 38",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=38" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 39",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=39" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 40",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=40" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 41",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=41" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 42",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=42" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 43",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=43" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 44",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=44" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 45",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=45" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 46",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=46" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 47",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=47" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 48",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=48" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 49",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=49" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 50",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=50" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 51",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=51" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 52",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=52" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 53",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=53" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 54",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=54" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 55",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=55" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 56",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=56" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 57",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=57" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 58",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=58" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 59",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=59" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 60",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=60" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 61",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=61" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      },
+      {
+        title: "Tập 62",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?ep=62" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ], trailer: "https://www.youtube.com/watch?v=HhesaQXLuRY"
   },
   {
     id: 34,
+    type: "single",
     slug: "tang-lop-itaewon",
     title: "Tầng Lớp Itaewon",
     year: 2020,
@@ -661,11 +2108,20 @@ export const MOVIES: Movie[] = [
     desc: "Chàng trai trẻ Park Saeroyi khởi nghiệp nhà hàng trên con đường Itaewon để trả thù tên tài phiệt đã phá hủy gia đình anh.",
     is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1,
     tags: ["Kinh điển"],
-    episodes: 16,
+    episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ],
     trailer: "https://www.youtube.com/watch?v=PyM6WfN47tI"
   },
   {
     id: 35,
+    type: "single",
     slug: "my-mister",
     title: "My Mister",
     year: 2018,
@@ -676,10 +2132,19 @@ export const MOVIES: Movie[] = [
     views: "11.2M",
     country: "Hàn Quốc",
     language: "Tiếng Việt",
-    director: "Kim Won-seok", cast: ["Lee Sun-kyun", "IU", "Oh Na-ra", "Kim Young-min"], thumb: "https://image.tmdb.org/t/p/w500/etj8E2o0Bud0HkONVQPjyCkIvpv.jpg", backdrop: "https://image.tmdb.org/t/p/original/mFY2HjrJEBPUWaGHfInFGlON4tP.jpg", desc: "Cuộc gặp gỡ giữa người đàn ông trung niên đang chịu đựng áp lực cuộc sống và cô gái trẻ chi đơn bí ẩn.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: ["Kinh điển"], episodes: 16, trailer: "https://www.youtube.com/watch?v=p499m6mE-iM"
+    director: "Kim Won-seok", cast: ["Lee Sun-kyun", "IU", "Oh Na-ra", "Kim Young-min"], thumb: "https://image.tmdb.org/t/p/w500/etj8E2o0Bud0HkONVQPjyCkIvpv.jpg", backdrop: "https://image.tmdb.org/t/p/original/mFY2HjrJEBPUWaGHfInFGlON4tP.jpg", desc: "Cuộc gặp gỡ giữa người đàn ông trung niên đang chịu đựng áp lực cuộc sống và cô gái trẻ chi đơn bí ẩn.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: ["Kinh điển"], episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ], trailer: "https://www.youtube.com/watch?v=p499m6mE-iM"
   },
   {
     id: 36,
+    type: "single",
     slug: "chi-dep-mua-com-ngon-cho-toi",
     title: "Chị Đẹp Mua Cơm Ngon Cho Tôi",
     year: 2018,
@@ -694,7 +2159,15 @@ export const MOVIES: Movie[] = [
     cast: ["Son Ye-jin", "Jung Hae-in"],
     thumb: "https://upload.wikimedia.org/wikipedia/vi/d/d9/Chi_Dep_Mua_Com_Cho_Toi.jpg",
     backdrop: "https://thethaovanhoa.mediacdn.vn/Upload/O5NP4aFt6GVwE7JTFAOaA/files/2018/04/chi-dep-mua-com-ngon-cho-toi-tap-5%20(5).jpg",
-    desc: "Câu chuyện tình yêu giữa người phụ nữ 35 tuổi và chàng trai 25 tuổi — bắt đầu từ những bữa cơm nhỏ.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: [], episodes: 16, trailer: "https://www.youtube.com/watch?v=u8xQp6ZtEto"
+    desc: "Câu chuyện tình yêu giữa người phụ nữ 35 tuổi và chàng trai 25 tuổi — bắt đầu từ những bữa cơm nhỏ.", is_featured: false, is_show_slider: false, position_show_slider: 1, position_featured: 1, tags: [], episodes: [
+      {
+        title: "Full",
+        server: [
+          { title: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+          { title: "Server 2", url: "https://www.youtube.com/watch?v=lV1OOlGwExM" }
+        ]
+      }
+    ], trailer: "https://www.youtube.com/watch?v=u8xQp6ZtEto"
   },
 ];
 

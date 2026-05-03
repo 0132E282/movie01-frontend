@@ -1,3 +1,13 @@
+export interface EpisodeServer {
+  title: string;
+  url: string;
+}
+
+export interface Episode {
+  title: string;
+  server: EpisodeServer[];
+}
+
 export interface Movie {
   id: number;
   slug: string;
@@ -20,7 +30,7 @@ export interface Movie {
   position_show_slider: number;
   position_featured: number;
   tags: string[];
-  episodes: number | null;
-  trailer: string | boolean | null;
-  episode_links?: Record<string, string>;
+  type: "single" | "series";
+  episodes: Episode[];
+  trailer: string | null;
 }
