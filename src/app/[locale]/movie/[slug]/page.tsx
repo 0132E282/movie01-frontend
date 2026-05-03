@@ -2,6 +2,7 @@ import { MOVIES } from "@/data/movies";
 import MovieDetailClient from "./MovieDetailClient";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import JsonLd from "@/components/SEO/JsonLd";
 
 type Props = {
   params: Promise<{ slug: string; locale: string }>;
@@ -65,5 +66,35 @@ export default async function MovieDetailPage({ params }: Props) {
     .filter((m) => m.id !== movie.id && m.genre.some((g) => movie.genre.includes(g)))
     .slice(0, 12);
 
-  return <MovieDetailClient movie={movie} related={related} />;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Movie",
+    "name": movie.title,
+    "image": movie.thumb,
+    "description": movie.desc,
+    "datePublished": movie.year.toString(),
+    "genre": movie.genre,
+    "director": {
+      "@type": "Person",
+      "name": movie.director
+    },
+    "actor": movie.cast.map(name => ({
+      "@type": "Person",
+      "name": name
+    })),
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": movie.rating,
+      "bestRating": "10",
+      "worstRating": "1",
+      "ratingCount": movie.views // Using views as a proxy for rating count
+    }
+  };
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <MovieDetailClient movie={movie} related={related} />
+    </>
+  );
 }

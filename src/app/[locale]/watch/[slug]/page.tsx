@@ -2,6 +2,7 @@ import { MOVIES } from "@/data/movies";
 import WatchClient from "./WatchClient";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import JsonLd from "@/components/SEO/JsonLd";
 
 type Props = {
   params: Promise<{ slug: string; locale: string }>;
@@ -74,5 +75,27 @@ export default async function WatchPage({ params }: Props) {
     .filter((m) => m.id !== movie.id && m.genre.some((g) => movie.genre.includes(g)))
     .slice(0, 8);
 
-  return <WatchClient movie={movie} currentEp={currentEp} related={related} />;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": `${movie.title} - Tập ${currentEp}`,
+    "description": movie.desc,
+    "thumbnailUrl": [movie.thumb, movie.backdrop].filter(Boolean),
+    "uploadDate": new Date().toISOString(), // Since we don't have exact upload date
+    "duration": movie.duration.includes("phút") ? `PT${parseInt(movie.duration)}M` : "PT1H30M", // Basic conversion
+    "contentUrl": `https://phimmoi01-frontend.vercel.app/watch/${slug}`,
+    "embedUrl": `https://phimmoi01-frontend.vercel.app/watch/${slug}`,
+    "interactionStatistic": {
+      "@type": "InteractionCounter",
+      "interactionType": { "@type": "WatchAction" },
+      "userInteractionCount": movie.views
+    }
+  };
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <WatchClient movie={movie} currentEp={currentEp} related={related} />
+    </>
+  );
 }
