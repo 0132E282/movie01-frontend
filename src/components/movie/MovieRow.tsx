@@ -56,9 +56,7 @@ export default function MovieRow({ title, movies, onSelect, onToggleFavorite, fa
       
       <div ref={scrollRef} className="hide-scroll flex gap-5 overflow-x-auto pb-4 px-1 -mx-1">
         {movies.map((m) => (
-          <div key={m.id} className="min-w-[200px]">
-            <MovieItem movie={m} onSelect={onSelect} onToggleFavorite={onToggleFavorite} isFavorite={favorites.has(m.id)} size={size} />
-          </div>
+          <MovieItem key={m.id} movie={m} onSelect={onSelect} onToggleFavorite={onToggleFavorite} isFavorite={favorites.has(m.id)} size={size} />
         ))}
       </div>
     </div>

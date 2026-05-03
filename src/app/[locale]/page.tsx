@@ -15,7 +15,7 @@ const genreCategories = [
   { label: "Kinh Dị", genre: "Kinh dị" },
   { label: "Hoạt Hình", genre: "Hoạt hình" },
   { label: "Tâm Lý", genre: "Tâm lý" },
-  { label: "Lãng Mạn", genre: "Gia đình" },
+  { label: "Lãng Mạn", genre: "Lãng mạn" },
   { label: "Khoa Học", genre: "Khoa học viễn tưởng" },
   { label: "Lịch Sử", genre: "Lịch sử" },
   { label: "Tội Phạm", genre: "Tội phạm" },
@@ -25,6 +25,10 @@ export default function HomePage() {
   const router = useRouter();
   const { favorites, toggleFavorite, addToHistory } = useAppContext();
 
+  const featuredMovies = MOVIES
+    .filter((m) => m.is_featured)
+    .sort((a, b) => a.position_featured - b.position_featured)
+    .slice(0, 8);
   const newMovies = [...MOVIES].sort((a, b) => b.year - a.year).slice(0, 8);
   const topRated = [...MOVIES].sort((a, b) => b.rating - a.rating).slice(0, 8);
   const actionMovies = MOVIES.filter((m) => m.genre.includes("Hành động"));
@@ -76,21 +80,22 @@ export default function HomePage() {
                 <Link
                   key={c.genre}
                   href={getGenreUrl(slugify(c.genre))}
-                  className="relative group overflow-hidden"
+                  className="group"
                 >
-                  <div className="bg-bg-2 border border-white/5 rounded-xl px-4 py-3.5 transition-all duration-300 group-hover:bg-bg-3 group-hover:border-accent/30 group-hover:-translate-y-1 flex items-center justify-center">
-                    <span className="text-[13.5px] font-bold text-text group-hover:text-white transition-colors text-center">
+                  <div className="relative bg-bg-2 border border-white/5 rounded-xl px-4 py-3.5 transition-all duration-300 group-hover:bg-bg-3 group-hover:border-accent/30 group-hover:-translate-y-1 flex items-center justify-center overflow-hidden h-full">
+                    <span className="relative z-10 text-[13.5px] font-bold text-text group-hover:text-white transition-colors text-center">
                       {c.label}
                     </span>
 
-                    {/* Subtle hover indicator */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {/* Subtle hover indicator - Now inside the translating div */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </Link>
               ))}
             </div>
           </div>
 
+          <MovieRow title="Phim Nổi Bật" movies={featuredMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} />
           <MovieRow title="Phim Mới Nhất" movies={newMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} onViewAll={handleViewCategory} category="Tất cả" />
           <MovieRow title="Phim Đánh Giá Cao" movies={topRated} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} />
           {actionMovies.length > 0 && <MovieRow title="Phim Hành Động" movies={actionMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} onViewAll={handleViewCategory} category="Hành động" />}

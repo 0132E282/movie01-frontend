@@ -97,47 +97,62 @@ export default function MovieItem({
         hovered ? "scale-[1.05] -translate-y-1 shadow-card-hover" : "scale-100 shadow-card"
       )}
     >
-      <div className="relative pb-[150%] bg-bg-3">
+      <div className="relative pb-[150%] bg-bg-2">
         <img
           src={movie.thumb} alt={movie.title}
-          onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.style.display = "none";
+            const parent = target.parentElement;
+            if (parent) {
+              parent.classList.add("flex", "items-center", "justify-center");
+              const placeholder = document.createElement("div");
+              placeholder.className = "text-text-muted text-[10px] font-bold uppercase text-center px-4";
+              placeholder.innerText = movie.title;
+              parent.appendChild(placeholder);
+            }
+          }}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <Badge variant="quality" className="absolute top-2 left-2 text-[10px] uppercase">{getBadgeText()}</Badge>
-        {movie.tags[0] && <Badge variant="gold" className="absolute top-2 right-2 text-[9px]">{movie.tags[0]}</Badge>}
+        <Badge variant="quality" className="absolute top-2 left-2 text-[10px] uppercase z-10">{getBadgeText()}</Badge>
+        {movie.tags[0] && <Badge variant="gold" className="absolute top-2 right-2 text-[9px] z-10">{movie.tags[0]}</Badge>}
 
         {hovered && (
-          <div className="absolute inset-0 bg-black/55 flex flex-col items-center justify-center gap-2 animate-fade-in">
+          <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-2 animate-fade-in z-20">
             <button
               onClick={(e) => { e.stopPropagation(); onSelect(movie); }}
-              className="w-12 h-12 rounded-full bg-accent hover:bg-accent-hover flex items-center justify-center transition-colors"
+              className="w-11 h-11 rounded-full bg-accent hover:bg-accent-hover flex items-center justify-center transition-all hover:scale-110 shadow-lg"
             >
               <Play size={20} className="fill-white text-white ml-0.5" />
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); onToggleFavorite(movie); }}
               className={cn(
-                "flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] border transition-colors",
+                "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold border transition-all",
                 isFavorite
-                  ? "bg-red-400/20 text-red-400 border-red-400/40"
+                  ? "bg-red-500/20 text-red-400 border-red-500/40"
                   : "bg-white/10 text-white border-white/20 hover:bg-white/20"
               )}
             >
-              <Heart size={13} className={cn(isFavorite && "fill-red-400")} />
-              {isFavorite ? "Đã thích" : "Yêu thích"}
+              <Heart size={12} className={cn(isFavorite && "fill-red-400")} />
+              {isFavorite ? "ĐÃ THÍCH" : "YÊU THÍCH"}
             </button>
           </div>
         )}
       </div>
 
-      <div className="p-2.5 pb-3">
-        <p className="text-xs font-semibold leading-tight mb-1 truncate">{movie.title}</p>
-        <div className="flex items-center gap-1.5 text-text-muted text-[11px]">
-          <span className="flex items-center gap-1 text-gold">
-            <Star size={11} className="fill-gold text-gold" />{movie.rating}
+      <div className="p-3">
+        <p className="text-[13px] font-bold leading-tight mb-1.5 truncate text-white group-hover:text-accent transition-colors">
+          {movie.title}
+        </p>
+        <div className="flex items-center gap-2 text-text-muted text-[11px] font-medium">
+          <span className="flex items-center gap-1 text-gold font-bold">
+            <Star size={10} className="fill-gold text-gold" />{movie.rating}
           </span>
-          <span>·</span><span>{movie.year}</span>
-          <span>·</span><span className="truncate">{movie.duration}</span>
+          <span className="opacity-30">•</span>
+          <span>{movie.year}</span>
+          <span className="opacity-30">•</span>
+          <span className="truncate">{movie.duration}</span>
         </div>
       </div>
     </div>

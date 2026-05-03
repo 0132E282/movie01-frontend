@@ -15,9 +15,12 @@ export interface Movie {
   thumb: string;
   backdrop: string;
   desc: string;
-  featured: boolean;
+  is_featured: boolean;
+  is_show_slider: boolean;
+  position_show_slider: number;
+  position_featured: number;
   tags: string[];
   episodes: number | null;
-  trailer: boolean;
+  trailer: string | boolean | null;
   episode_links?: Record<string, string>;
 }

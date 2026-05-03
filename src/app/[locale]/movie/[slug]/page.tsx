@@ -51,7 +51,7 @@ export default function MovieDetailPage({ params }: { params: Promise<{ slug: st
 
   const totalEps = movie.episodes || 1;
   const isSeries = totalEps > 1;
-  const hasTrailer = movie.trailer !== false;
+  const hasTrailer = !!movie.trailer;
 
   const related = MOVIES
     .filter((m) => m.id !== movie.id && m.genre.some((g) => movie.genre.includes(g)))

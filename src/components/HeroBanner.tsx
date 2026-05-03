@@ -15,7 +15,12 @@ interface Props {
 
 // * SRP: HeroBanner only owns slide state + rendering — data comes from parent
 export default function HeroBanner({ movies, onPlay, onDetail, onToggleFavorite, favorites, size = "lg" }: Props) {
-  const featured = movies.filter((m) => m.featured).length > 0 ? movies.filter((m) => m.featured) : movies.slice(0, 5);
+  const featured = movies
+    .filter((m) => m.is_show_slider)
+    .sort((a, b) => a.position_show_slider - b.position_show_slider)
+    .length > 0
+    ? movies.filter((m) => m.is_show_slider).sort((a, b) => a.position_show_slider - b.position_show_slider)
+    : movies.slice(0, 5);
   const [idx, setIdx] = useState(0);
   const [animating, setAnimating] = useState(false);
 
