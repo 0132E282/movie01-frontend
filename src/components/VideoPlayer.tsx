@@ -8,9 +8,10 @@ interface Props {
   episode?: number | null;
   onEpChange?: (ep: number) => void;
   isSeries?: boolean;
+  server?: string;
 }
 
-export default function VideoPlayer({ movie, episode, isSeries }: Props) {
+export default function VideoPlayer({ movie, episode, isSeries, server }: Props) {
   const [loading, setLoading] = useState(true);
 
   const currentEp = episode?.toString() || "1";

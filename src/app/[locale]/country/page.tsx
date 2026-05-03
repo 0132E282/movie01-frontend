@@ -1,3 +1,4 @@
+"use client";
 import { COUNTRIES } from "@/data/movies";
 import CategoryListPage from "@/components/CategoryListPage";
 

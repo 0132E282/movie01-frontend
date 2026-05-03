@@ -1,3 +1,4 @@
+"use client";
 import { GENRES } from "@/data/movies";
 import CategoryListPage from "@/components/CategoryListPage";
 

@@ -1,3 +1,4 @@
+"use client";
 import { YEARS } from "@/data/movies";
 import CategoryListPage from "@/components/CategoryListPage";
 

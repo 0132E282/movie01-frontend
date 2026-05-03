@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Footer from "@/components/Footer";
 import AppBreadcrumb from "@/components/AppBreadcrumb";
 
@@ -12,7 +13,9 @@ export default function MainLayout({ children, hideBreadcrumb = false }: Props) 
       {!hideBreadcrumb && (
         <div className="border-b border-white/5 bg-bg/20 backdrop-blur-sm">
           <div className="mx-auto w-full max-w-[1600px] px-10 pt-5 pb-3">
-             <AppBreadcrumb />
+            <Suspense fallback={<div className="h-5" />}>
+               <AppBreadcrumb />
+            </Suspense>
           </div>
         </div>
       )}
