@@ -49,10 +49,6 @@ export const MOVIES: Movie[] = [
     thumb: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/rLb2cwF3Pazuxaj0sRXQ037tGI1.jpg",
     desc: "Câu chuyện về cuộc đời của J. Robert Oppenheimer — cha đẻ của bom nguyên tử — và quá trình nghiên cứu dự án Manhattan.",
-    is_featured: false,
-    is_show_slider: false,
-    position_show_slider: 1,
-    position_featured: 1,
     tags: ["Oscar"],
     episodes: null,
     trailer: "https://www.youtube.com/watch?v=uYPbbksJxIg"
