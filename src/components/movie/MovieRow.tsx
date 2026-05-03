@@ -21,8 +21,8 @@ export default function MovieRow({ title, movies, onSelect, onToggleFavorite, fa
   if (!movies.length) return null;
 
   return (
-    <div className="mb-16">
-      <div className="flex items-center justify-between mb-8">
+    <div className="mb-10 md:mb-16">
+      <div className="flex items-center justify-between mb-5 md:mb-8">
         <div className="flex items-center gap-3">
           <div className="w-1.5 h-7 bg-accent/80 rounded-full" />
           <h2 className="text-xl font-black tracking-tight text-white uppercase">{title}</h2>

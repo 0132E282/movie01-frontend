@@ -95,7 +95,10 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${dmSans.variable} ${playfair.variable}`}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+      </head>
+      <body className={`${dmSans.variable} ${playfair.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <AppProvider>
             {children}

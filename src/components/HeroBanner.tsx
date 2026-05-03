@@ -13,7 +13,6 @@ interface Props {
   size?: "sm" | "lg";
 }
 
-// * SRP: HeroBanner only owns slide state + rendering — data comes from parent
 export default function HeroBanner({ movies, onPlay, onDetail, onToggleFavorite, favorites, size = "lg" }: Props) {
   const featured = movies
     .filter((m) => m.is_show_slider)
@@ -21,12 +20,12 @@ export default function HeroBanner({ movies, onPlay, onDetail, onToggleFavorite,
     .length > 0
     ? movies.filter((m) => m.is_show_slider).sort((a, b) => a.position_show_slider - b.position_show_slider)
     : movies.slice(0, 5);
+    
   const [idx, setIdx] = useState(0);
   const [animating, setAnimating] = useState(false);
 
   const movie = featured[idx % featured.length];
 
-  // * Auto-advance every 7s
   useEffect(() => {
     const t = setInterval(() => goTo((idx + 1) % featured.length), 7000);
     return () => clearInterval(t);
@@ -46,184 +45,176 @@ export default function HeroBanner({ movies, onPlay, onDetail, onToggleFavorite,
 
   if (!movie) return null;
   const isFav = favorites.has(movie.id);
-
   const isSmall = size === "sm";
 
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: isSmall ? "clamp(200px, 25vw, 300px)" : "clamp(420px, 58vw, 640px)" }}>
+    <div 
+      className="relative w-full overflow-hidden bg-bg cursor-pointer group/banner" 
+      style={{ height: isSmall ? "clamp(240px, 35vw, 320px)" : "clamp(420px, 60vw, 720px)" }}
+      onClick={() => {
+        // On mobile, entire banner clicks to detail
+        if (window.innerWidth < 1024) onDetail(movie);
+      }}
+    >
       {/* ── Backdrop slides ──────────────────────────────────── */}
       {featured.map((m, i) => (
         <div
           key={m.id}
-          className="absolute inset-0 transition-opacity duration-500"
+          className="absolute inset-0 transition-opacity duration-700 ease-in-out"
           style={{ opacity: i === idx ? 1 : 0, zIndex: i === idx ? 1 : 0 }}
         >
           <img
             src={m.backdrop}
             alt=""
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center lg:object-[center_20%]"
             onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
           />
-          {/* Left fade */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/75 to-transparent" />
-          {/* Bottom fade */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/30" />
+          {/* Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent lg:hidden" />
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-bg via-bg/60 to-transparent" />
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-bg via-transparent to-bg/20" />
         </div>
       ))}
 
-      {/* ── Content overlay ──────────────────────────────────── */}
-      <div className="relative z-10 h-full flex items-center">
+      {/* ── Content overlay (Mobile + Desktop) ────────────────────── */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-end lg:justify-center">
         <div
           className={cn(
-            "pr-10 md:pr-16 transition-all duration-400 w-full",
-            isSmall ? "pl-10 md:pl-12" : "pl-10 md:pl-16 max-w-[1200px]"
+            "px-6 md:px-12 lg:px-20 pb-12 lg:pb-0 transition-all duration-500 w-full max-w-[1400px] mx-auto",
           )}
-          style={{ opacity: animating ? 0 : 1, transform: animating ? "translateY(8px)" : "translateY(0)" }}
+          style={{ 
+            opacity: animating ? 0 : 1, 
+            transform: animating ? "translateY(10px)" : "translateY(0)" 
+          }}
         >
-          <div className={cn("flex items-center justify-between gap-6 w-full", !isSmall && "flex-col items-start justify-start")}>
-            <div className={cn("flex-1", isSmall ? "max-w-[70%]" : "max-w-[650px]")}>
-              {!isSmall && (
-                /* Quality + episode badge (Homepage only) */
-                <div className="flex gap-2 mb-4 flex-wrap">
-                  <span className="bg-accent text-white text-[10px] font-black px-2.5 py-1 rounded tracking-widest uppercase">
-                    {movie.quality}
-                  </span>
-                  {movie.type === "series" && (
-                    <span className="bg-bg-3 border border-white/10 text-text text-[10px] font-bold px-2.5 py-1 rounded tracking-wide uppercase">
-                      Hoàn tất ({movie.episodes.length} tập)
-                    </span>
-                  )}
-                  {movie.tags.slice(0, 2).map((t) => (
-                    <span
-                      key={t}
-                      className="bg-bg-3/80 border border-white/10 text-text-muted text-[10px] font-semibold px-2.5 py-1 rounded tracking-wide uppercase"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              {/* Title */}
-              <h1 className={cn(
-                "font-sans font-extrabold leading-[1.08] tracking-tight text-white drop-shadow-lg",
-                isSmall ? "text-[clamp(24px,4vw,36px)] mb-0" : "text-[clamp(26px,4.5vw,52px)] mb-2"
-              )}>
-                {movie.title}
-              </h1>
-
-              {!isSmall && (
-                <>
-                  {/* Sub-title / genre line */}
-                  <p className="text-text-muted text-[13px] mb-3 font-medium">
-                    {movie.genre.join(" · ")}
-                  </p>
-
-                  {/* Meta row */}
-                  <div className="flex items-center gap-3 text-[13px] mb-5 flex-wrap">
-                    <span className="flex items-center gap-1 text-gold font-bold">
-                      <Star size={13} className="fill-gold text-gold" />
-                      {movie.rating}
-                    </span>
-                    <span className="text-text-muted">{movie.year}</span>
-                    <span className="opacity-20 text-text-muted">·</span>
-                    <span className="text-text-muted">{movie.duration}</span>
-                    <span className="opacity-20 text-text-muted">·</span>
-                    <span className="text-text-muted">{movie.country}</span>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-white/65 text-[13.5px] leading-[1.7] mb-7 line-clamp-3 max-w-[420px]">
-                    {movie.desc}
-                  </p>
-                </>
-              )}
+          <div className="flex flex-col items-start text-left w-full lg:max-w-[700px]">
+            {/* Badges & Meta (Mobile optimized) */}
+            <div className="flex flex-wrap items-center gap-2 mb-3 lg:mb-6">
+              <span className="bg-accent text-white text-[10px] lg:text-[11px] font-black px-2 py-0.5 lg:px-2.5 lg:py-1 rounded-sm tracking-widest uppercase">
+                {movie.quality}
+              </span>
+              <span className="flex items-center gap-1 text-gold text-[12px] lg:text-[13px] font-black">
+                <Star size={14} className="fill-gold" /> {movie.rating}
+              </span>
+              <span className="text-white/60 text-[12px] font-bold lg:hidden">
+                · {movie.year} · {movie.country}
+              </span>
             </div>
 
-            {/* Actions */}
-            <div className={cn("flex items-center gap-3", isSmall && "shrink-0")}>
-              <button
-                onClick={() => onPlay(movie, 1)}
-                className={cn(
-                  "flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-bold transition-all duration-200 shadow-lg hover:shadow-accent/30 hover:shadow-xl active:scale-95",
-                  isSmall ? "text-[12px] px-6 py-2.5 rounded-md" : "text-[14px] px-6 py-3 rounded-lg"
-                )}
-              >
-                <Play size={isSmall ? 14 : 16} className="fill-white" />
-                Xem Ngay
-              </button>
+            {/* Title */}
+            <h1 className="font-sans font-black leading-[1.2] lg:leading-[1.1] tracking-tight text-white mb-2 drop-shadow-2xl text-[28px] md:text-[40px] lg:text-[64px] break-words">
+              {movie.title}
+            </h1>
 
-              {!isSmall && (
-                <>
-                  <button
-                    onClick={() => onDetail(movie)}
-                    className="flex items-center gap-2 bg-white/10 hover:bg-white/18 backdrop-blur-sm border border-white/20 text-white font-semibold text-[14px] px-6 py-3 rounded-lg transition-all duration-200 active:scale-95"
-                  >
-                    <Info size={16} />
-                    Chi Tiết
-                  </button>
+            {/* Sub-title (English title) */}
+            <p className="text-white/80 text-[14px] lg:text-[18px] mb-4 font-bold tracking-tight break-words">
+              {movie.title !== movie.slug.replace(/-/g, ' ') ? movie.slug.replace(/-/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') : ""}
+            </p>
 
-                  <button
-                    onClick={() => onToggleFavorite(movie)}
-                    className={cn(
-                      "flex items-center justify-center w-11 h-11 rounded-lg border transition-all duration-200 active:scale-95",
-                      isFav
-                        ? "text-red-400 border-red-400/50 bg-red-400/10"
-                        : "text-white/60 border-white/20 bg-white/8 hover:bg-white/15 hover:text-white"
-                    )}
-                  >
-                    <Heart size={17} className={cn(isFav && "fill-red-400")} />
-                  </button>
-                </>
-              )}
+            {/* Meta Rows (Desktop only for full detail) */}
+            <div className="hidden lg:flex flex-col gap-3 mb-6">
+              <p className="text-white/80 text-[15px] font-bold tracking-tight">
+                {movie.genre.slice(0, 3).join(" · ")}
+              </p>
+              <div className="flex items-center gap-3 text-[13px] font-bold text-white/60">
+                <span>{movie.year}</span>
+                <span className="w-1 h-1 rounded-full bg-white/20" />
+                <span>{movie.duration}</span>
+                <span className="w-1 h-1 rounded-full bg-white/20" />
+                <span>{movie.country}</span>
+              </div>
             </div>
+
+            {/* Genre (Mobile only) */}
+            <p className="text-accent text-[13px] font-bold lg:hidden mb-4">
+              {movie.genre.slice(0, 2).join(" · ")}
+            </p>
+
+            {/* Description (Desktop only) */}
+            <p className="hidden lg:block text-white/50 text-[15px] leading-[1.6] mb-8 line-clamp-3 max-w-[550px]">
+              {movie.desc}
+            </p>
           </div>
         </div>
+      </div>
 
-        {/* ── Filmstrip thumbnails ──────────────── */}
-        {!isSmall && (
-          <div className="hidden lg:flex absolute right-10 bottom-10 gap-2 z-20">
+        {/* Bottom Row: Actions (Left) + Thumbnails (Right) */}
+        <div className="hidden lg:flex absolute bottom-10 left-10 lg:left-20 right-10 lg:right-20 z-20 flex items-center justify-between gap-10">
+          {/* Actions (Left) */}
+          <div className="flex items-center gap-4 shrink-0">
+            <button
+              onClick={(e) => { e.stopPropagation(); onPlay(movie, 1); }}
+              className="flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-black transition-all duration-300 shadow-xl hover:shadow-accent/40 active:scale-95 text-[15px] px-8 py-3.5 rounded-xl"
+            >
+              <Play size={18} className="fill-white" />
+              Xem Ngay
+            </button>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); onDetail(movie); }}
+              className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold border border-white/10 transition-all duration-300 active:scale-95 text-[14px] px-6 py-3.5 rounded-xl backdrop-blur-md"
+            >
+              <Info size={18} />
+              Chi Tiết
+            </button>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); onToggleFavorite(movie); }}
+              className={cn(
+                "flex items-center justify-center rounded-xl border transition-all duration-300 active:scale-95 bg-white/5 backdrop-blur-md w-12 h-12 lg:w-[54px] lg:h-[54px]",
+                isFav
+                  ? "text-red-500 border-red-500/30 bg-red-500/10"
+                  : "text-white border-white/10 hover:bg-white/20"
+              )}
+            >
+              <Heart size={20} className={cn(isFav && "fill-red-500")} />
+            </button>
+          </div>
+
+          {/* Thumbnails (Right) */}
+          <div className="flex justify-end gap-3 overflow-x-auto hide-scroll flex-1">
             {featured.map((m, i) => (
               <button
                 key={m.id}
-                onClick={() => goTo(i)}
+                onClick={(e) => { e.stopPropagation(); goTo(i); }}
                 className={cn(
-                  "relative flex-shrink-0 rounded-md overflow-hidden transition-all duration-300 cursor-pointer",
-                  i === idx
-                    ? "w-[96px] h-[60px] ring-2 ring-accent shadow-lg shadow-accent/30"
-                    : "w-[72px] h-[46px] opacity-55 hover:opacity-90 hover:scale-105"
+                  "relative flex-shrink-0 transition-all duration-300",
+                  i === idx ? "scale-110" : "opacity-40 hover:opacity-100"
                 )}
               >
-                <img
-                  src={m.thumb}
-                  alt={m.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
-                />
-                {i === idx && <div className="absolute inset-x-0 bottom-0 h-0.5 bg-accent" />}
+                <div className={cn(
+                  "rounded-lg overflow-hidden border-2 transition-all duration-300",
+                  i === idx ? "border-accent shadow-xl shadow-accent/20 w-24 h-14" : "border-white/10 w-20 h-12"
+                )}>
+                  <img
+                    src={m.thumb}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </button>
             ))}
           </div>
-        )}
+        </div>
+
+      {/* ── Desktop Navigation Arrows ───────────────── */}
+      <div className="hidden lg:block">
+        <button
+          onClick={(e) => { e.stopPropagation(); goTo((idx - 1 + featured.length) % featured.length); }}
+          className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 hover:bg-accent text-white transition-all duration-300 backdrop-blur-md border border-white/5 opacity-0 group-hover/banner:opacity-100"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); goTo((idx + 1) % featured.length); }}
+          className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 hover:bg-accent text-white transition-all duration-300 backdrop-blur-md border border-white/5 opacity-0 group-hover/banner:opacity-100"
+        >
+          <ChevronRight size={24} />
+        </button>
       </div>
 
-      {/* ── Arrows ───────────────── */}
-      <button
-        onClick={() => goTo((idx - 1 + featured.length) % featured.length)}
-        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/70 border border-white/15 text-white/70 hover:text-white transition-all duration-200 backdrop-blur-sm"
-      >
-        <ChevronLeft size={18} />
-      </button>
-      <button
-        onClick={() => goTo((idx + 1) % featured.length)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/70 border border-white/15 text-white/70 hover:text-white transition-all duration-200 backdrop-blur-sm"
-        style={{ right: "clamp(12px, 1.5vw, 24px)" }}
-      >
-        <ChevronRight size={18} />
-      </button>
-
-      {/* ── Progress bar ── */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 h-[2px] bg-white/8">
+      {/* ── Progress Indicator ── */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 h-1 bg-white/5">
         <div
           key={idx}
           className="h-full bg-accent origin-left"
@@ -236,6 +227,8 @@ export default function HeroBanner({ movies, onPlay, onDetail, onToggleFavorite,
           from { transform: scaleX(0); }
           to   { transform: scaleX(1); }
         }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
     </div>
   );

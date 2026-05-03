@@ -67,10 +67,10 @@ export default function HomeClient({
           onToggleFavorite={toggleFavorite}
           favorites={favorites}
         />
-        <div className="px-10 pb-12 mt-8 relative z-20">
+        <div className="px-4 md:px-10 pb-12 mt-4 md:mt-8 relative z-20">
           {/* Genre categories - Simplified Premium UI */}
-          <div className="mb-14">
-            <div className="flex items-center justify-between mb-6">
+          <div className="mb-10 md:mb-16">
+            <div className="flex items-center justify-between mb-5 md:mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1.5 h-6 bg-accent rounded-full" />
                 <h2 className="text-xl font-black tracking-tight text-white uppercase">Thể Loại Phim</h2>
@@ -80,12 +80,12 @@ export default function HomeClient({
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+            <div className="flex overflow-x-auto hide-scroll gap-3 md:grid md:grid-cols-4 lg:grid-cols-8 pb-2">
               {genreCategories.map((c) => (
                 <Link
                   key={c.genre}
                   href={getGenreUrl(slugify(c.genre))}
-                  className="group"
+                  className="group shrink-0 w-[140px] md:w-full"
                 >
                   <div className="relative bg-bg-2 border border-white/5 rounded-xl px-4 py-3.5 transition-all duration-300 group-hover:bg-bg-3 group-hover:border-accent/30 group-hover:-translate-y-1 flex items-center justify-center overflow-hidden h-full">
                     <span className="relative z-10 text-[13.5px] font-bold text-text group-hover:text-white transition-colors text-center">

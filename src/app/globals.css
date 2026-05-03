@@ -32,9 +32,18 @@
   }
 
   * { box-sizing: border-box; }
-  body {
-    @apply bg-bg text-text font-sans;
+  
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
+    position: relative;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
   }
 
   ::-webkit-scrollbar { width: 4px; height: 4px; }
