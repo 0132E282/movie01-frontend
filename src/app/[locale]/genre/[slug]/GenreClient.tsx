@@ -75,7 +75,7 @@ export default function GenreClient({ slug, initialGenreName }: { slug: string, 
   return (
     <MainLayout hideBreadcrumb={false}>
       <Navbar />
-      <div className="px-10 pt-8 pb-12 max-w-[1600px] mx-auto">
+      <div className="px-10 pt-8 pb-12 max-w-[1300px] mx-auto">
         <div className="flex items-center gap-4 mb-10 flex-wrap">
           <h1 className="text-[32px] font-black tracking-tight text-white">
             {getDynamicTitle()}

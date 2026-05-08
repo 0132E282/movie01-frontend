@@ -6,6 +6,8 @@ import Navbar from "@/components/Navbar";
 import MainLayout from "@/layouts/MainLayout";
 import { useAppContext } from "@/context/AppContext";
 import { getMovieUrl } from "@/lib/routes";
+import Icon from "@/components/Icon";
+import { cn } from "@/lib/utils";
 
 export default function FavoritesRoute() {
   const router = useRouter();
@@ -21,19 +23,21 @@ export default function FavoritesRoute() {
     return (
       <MainLayout>
         <Navbar />
-        <div style={{ paddingTop: 56 }}>
-          <div style={{ padding: "80px 40px", textAlign: "center" }}>
-            <div style={{ background: "rgba(192,57,43,0.1)", width: 80, height: 80, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px" }}>
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#c0392b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
+        <div className="pt-20 pb-32">
+          <div className="max-w-[1300px] mx-auto px-6 md:px-10 flex flex-col items-center text-center">
+            <div className="bg-accent/10 w-24 h-24 rounded-full flex items-center justify-center mb-8 border border-accent/20 animate-pulse">
+              <Icon name="heart" size={40} className="text-accent" />
             </div>
-            <h2 style={{ fontSize: 24, fontWeight: 800, color: "#f0eee8", marginBottom: 12 }}>Bạn chưa đăng nhập</h2>
-            <p style={{ color: "#9896a0", marginBottom: 24, fontSize: 14 }}>Vui lòng đăng nhập để xem và quản lý danh sách phim yêu thích của bạn.</p>
+            <h2 className="text-[32px] font-black text-text uppercase tracking-tight mb-4">Bạn chưa đăng nhập</h2>
+            <p className="text-text-muted max-w-md mb-10 font-medium leading-relaxed">
+              Vui lòng đăng nhập để xem và quản lý danh sách phim yêu thích của bạn. 
+              Các bộ phim bạn thích sẽ được đồng bộ trên tất cả thiết bị.
+            </p>
             <button
               onClick={() => setAuthMode("login")}
-              style={{ background: "#c0392b", color: "#fff", border: "none", borderRadius: 8, padding: "12px 32px", fontSize: 14, fontWeight: 700, cursor: "pointer" }}
+              className="bg-accent hover:bg-accent-hover text-white px-12 py-4 rounded-2xl text-[15px] font-black uppercase tracking-[0.2em] transition-all shadow-xl shadow-accent/20 active:scale-95 flex items-center gap-3"
             >
+              <Icon name="user" size={20} />
               Đăng nhập ngay
             </button>
           </div>
@@ -45,53 +49,76 @@ export default function FavoritesRoute() {
   return (
     <MainLayout>
       <Navbar />
-      <div style={{ paddingTop: 56 }}>
-        <div style={{ padding: "32px 40px" }}>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, marginBottom: 6, color: "#f0eee8" }}>Yêu Thích</h1>
-          <p style={{ color: "#9896a0", fontSize: 14, marginBottom: 28 }}>{favoriteMovies.length} bộ phim trong danh sách</p>
+      <div className="pt-20 pb-20">
+        <div className="max-w-[1300px] mx-auto px-6 md:px-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+              <h1 className="font-display text-[36px] font-extrabold text-text uppercase tracking-tight mb-2">Phim Yêu Thích</h1>
+              <div className="flex items-center gap-2 text-text-muted font-bold text-sm">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                {favoriteMovies.length} bộ phim trong danh sách của bạn
+              </div>
+            </div>
+          </div>
+
           {favoriteMovies.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "80px 0", color: "#9896a0" }}>
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-              <p style={{ marginTop: 16, fontSize: 16 }}>Chưa có phim yêu thích</p>
-              <p style={{ marginTop: 8, fontSize: 13 }}>Nhấn ♥ trên bất kỳ phim nào để thêm vào đây</p>
+            <div className="flex flex-col items-center justify-center py-32 text-text-muted bg-bg-2 rounded-3xl border border-dashed border-border">
+              <div className="w-24 h-24 rounded-full bg-bg-3 flex items-center justify-center mb-8">
+                <Icon name="heart" size={44} className="opacity-10" />
+              </div>
+              <p className="text-xl font-bold text-text mb-3">Danh sách yêu thích đang trống</p>
+              <p className="text-sm font-medium mb-8">Hãy nhấn biểu tượng trái tim trên bất kỳ bộ phim nào để thêm vào đây</p>
+              <button 
+                onClick={() => router.push("/")}
+                className="text-accent font-black text-xs uppercase tracking-widest flex items-center gap-2 hover:translate-x-1 transition-all"
+              >
+                Khám phá phim ngay <Icon name="chevronRight" size={14} />
+              </button>
             </div>
           ) : (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 16 }}>
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-x-8 gap-y-12">
               {favoriteMovies.map((m) => (
-                <div key={m.id} style={{ position: "relative" }}>
+                <div key={m.id} className="group relative">
                   <div
                     onClick={() => handleSelect(m)}
-                    style={{ cursor: "pointer", borderRadius: 10, overflow: "hidden", background: "#1a1a24", transition: "transform 0.2s" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.04) translateY(-4px)")}
-                    onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                    className="aspect-[2/3] rounded-2xl overflow-hidden bg-bg-2 border border-border shadow-card group-hover:shadow-card-hover transition-all duration-500 cursor-pointer relative"
                   >
-                    <div style={{ position: "relative", paddingBottom: "150%", background: "#111118" }}>
-                      <img src={m.thumb} alt={m.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} onError={(e) => ((e.target as HTMLImageElement).style.display = "none")} />
-                      <div style={{ position: "absolute", top: 8, left: 8, background: "#c0392b", color: "#fff", fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: 4 }}>{m.quality}</div>
+                    <img src={m.thumb} alt={m.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    
+                    <div className="absolute top-3 left-3">
+                       <div className="bg-accent text-white text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-lg shadow-lg">
+                          {m.quality}
+                       </div>
                     </div>
-                    <div style={{ padding: "10px 10px 12px" }}>
-                      <div style={{ fontSize: 12, fontWeight: 600, lineHeight: 1.3, marginBottom: 4, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: "#f0eee8" }}>{m.title}</div>
-                      <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#9896a0", fontSize: 11 }}>
-                        <span style={{ color: "#d4a853" }}>★ {m.rating}</span>
-                        <span>·</span><span>{m.year}</span>
-                      </div>
+
+                    {/* Actions */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100">
+                       <div className="w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center shadow-glow">
+                          <Icon name="play" size={28} className="fill-white" />
+                       </div>
                     </div>
                   </div>
+
                   <button
                     onClick={() => toggleFavorite(m)}
-                    style={{
-                      position: "absolute", top: 10, right: 10,
-                      background: "rgba(0,0,0,0.7)", border: "none",
-                      borderRadius: "50%", width: 28, height: 28,
-                      display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer",
-                    }}
+                    className="absolute -top-3 -right-3 w-10 h-10 rounded-2xl bg-bg-3 border border-border text-red-500 shadow-xl flex items-center justify-center hover:bg-red-500 hover:text-white transition-all active:scale-90 z-20 group/remove"
                   >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e25561" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                    </svg>
+                    <Icon name="x" size={20} className="group-hover:rotate-90 transition-transform" />
                   </button>
+
+                  <div className="mt-5">
+                    <h3 className="font-bold text-[16px] text-text line-clamp-1 group-hover:text-accent transition-colors uppercase tracking-tight mb-2">
+                      {m.title}
+                    </h3>
+                    <div className="flex items-center gap-4 text-[12px] text-text-muted font-black uppercase tracking-widest">
+                      <span className="text-gold flex items-center gap-1">★ {m.rating}</span>
+                      <span className="w-1 h-1 rounded-full bg-white/10" />
+                      <span>{m.year}</span>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

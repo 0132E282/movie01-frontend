@@ -15,7 +15,7 @@ const dmSans = DM_Sans({
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-playfair",
 });
 
@@ -94,8 +94,9 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className="notranslate" translate="no">
       <head>
+        <meta name="google" content="notranslate" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
       </head>
       <body className={`${dmSans.variable} ${playfair.variable} antialiased`}>

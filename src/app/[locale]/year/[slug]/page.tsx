@@ -75,7 +75,7 @@ function YearContent({ slug }: { slug: string }) {
   ].filter(Boolean).length;
 
   return (
-    <div className="px-10 pt-6 pb-12 max-w-[1600px] mx-auto">
+    <div className="px-10 pt-6 pb-12 max-w-[1300px] mx-auto">
       <div className="flex items-center gap-4 mb-10 flex-wrap">
         <h1 className="text-[32px] font-black tracking-tight text-white">
           {getDynamicTitle()}

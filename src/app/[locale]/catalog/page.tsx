@@ -16,7 +16,7 @@ function AllCatalogContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { favorites, toggleFavorite, addToHistory } = useAppContext();
-  
+
   // State for filters
   const [genre, setGenre] = useState(searchParams.get("genre") || "Tất cả");
   const [country, setCountry] = useState(searchParams.get("country") || "Tất cả");
@@ -44,7 +44,7 @@ function AllCatalogContent() {
     else if (sort === "oldest") list = [...list].sort((a, b) => a.year - b.year);
     else if (sort === "rating") list = [...list].sort((a, b) => b.rating - a.rating);
     else if (sort === "views") list = [...list].sort((a, b) => parseFloat(b.views) - parseFloat(a.views));
-    
+
     return list;
   }, [genre, year, quality, country, sort]);
 
@@ -65,20 +65,20 @@ function AllCatalogContent() {
     if (genre !== "Tất cả") parts.push(genre);
     if (country !== "Tất cả") parts.push(country);
     if (year !== "Tất cả") parts.push(`Năm ${year}`);
-    
+
     if (parts.length > 0) return `Phim ${parts.join(" - ")}`;
     return "Danh Mục Phim";
   };
 
   const activeFiltersCount = [
-    genre !== "Tất cả", 
-    year !== "Tất cả", 
-    quality !== "Tất cả", 
+    genre !== "Tất cả",
+    year !== "Tất cả",
+    quality !== "Tất cả",
     country !== "Tất cả"
   ].filter(Boolean).length;
 
   return (
-    <div className="px-10 pt-8 pb-12 max-w-[1600px] mx-auto">
+    <div className="px-10 pt-8 pb-12 max-w-[1300px] mx-auto">
       <div className="flex items-center gap-4 mb-10 flex-wrap">
         <h1 className="text-[32px] font-black tracking-tight text-white">
           {getDynamicTitle()}

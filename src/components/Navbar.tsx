@@ -45,7 +45,7 @@ const ProfileMenu = ({
   </div>
 );
 
-export default function Navbar() {
+export default function Navbar({ transparent = false }: { transparent?: boolean }) {
   const router = useRouter();
   const pathname = usePathname();
   const { user, setUser, authMode, setAuthMode } = useAppContext();
@@ -104,7 +104,12 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[200] bg-[#0d0d0d]/95 backdrop-blur-md border-b border-white/5 h-14 flex items-center justify-between px-4 lg:px-8 shadow-lg">
+      <nav className={cn(
+        "fixed top-0 left-0 right-0 z-[200] transition-all duration-300 h-14 flex items-center justify-between px-4 lg:px-8",
+        transparent 
+          ? "bg-transparent border-none" 
+          : "bg-[#0d0d0d]/95 backdrop-blur-md border-b border-white/5 shadow-lg"
+      )}>
         <div className="flex items-center gap-1 lg:gap-8">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

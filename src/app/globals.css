@@ -4,9 +4,7 @@
 
 @layer base {
   :root {
-    /* Tất cả token lấy từ tailwind.config.ts — đừng thêm màu trực tiếp ở đây */
-    --font: "DM Sans", sans-serif;
-    --font2: "Playfair Display", serif;
+    /* Design tokens synchronized with tailwind.config.ts */
     --radius: 0.625rem;
 
     /* shadcn/ui CSS variable mapping */
@@ -40,10 +38,11 @@
     padding: 0;
     overflow-x: hidden;
     position: relative;
+    font-family: var(--font-dm-sans), sans-serif;
   }
 
   body {
-    @apply bg-bg text-text font-sans antialiased;
+    @apply bg-bg text-text antialiased;
   }
 
   ::-webkit-scrollbar { width: 4px; height: 4px; }
@@ -57,7 +56,22 @@
 @layer utilities {
   .hide-scroll::-webkit-scrollbar { display: none; }
   .hide-scroll { scrollbar-width: none; }
-  .font-display { font-family: var(--font2); }
+  .font-display { font-family: var(--font-playfair), serif; }
+  
+  /* Custom Elegant Scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent/40;
+  }
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

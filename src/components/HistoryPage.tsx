@@ -1,5 +1,7 @@
 "use client";
 import type { Movie } from "@/types";
+import Icon from "./Icon";
+import { cn } from "@/lib/utils";
 
 interface Props {
   history: number[];
@@ -13,79 +15,82 @@ export default function HistoryPage({ history, movies, onSelect, onClearHistory,
   const histMovies = history.map((id) => movies.find((m) => m.id === id)).filter(Boolean) as Movie[];
 
   return (
-    <div style={{ padding: "32px 40px" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
+    <div className="px-6 md:px-10 py-8 max-w-[1300px] mx-auto">
+      <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, marginBottom: 4, color: "#f0eee8" }}>Lịch Sử Xem</h1>
-          <p style={{ color: "#9896a0", fontSize: 14 }}>{histMovies.length} bộ phim đã xem</p>
+          <h1 className="font-display text-[28px] font-extrabold mb-1 text-text uppercase tracking-tight">
+            Lịch Sử Xem
+          </h1>
+          <p className="text-text-muted text-sm font-medium">
+            {histMovies.length} bộ phim đã xem
+          </p>
         </div>
         {histMovies.length > 0 && (
           <button
             onClick={onClearHistory}
-            style={{
-              background: "rgba(226,85,97,0.1)", color: "#e25561",
-              border: "1px solid rgba(226,85,97,0.3)", borderRadius: 8,
-              padding: "8px 16px", fontSize: 13, cursor: "pointer",
-              display: "flex", alignItems: "center", gap: 6,
-            }}
+            className="bg-red-500/10 text-red-500 border border-red-500/30 rounded-xl px-5 py-2.5 text-xs font-black uppercase tracking-widest hover:bg-red-500/20 transition-all flex items-center gap-2 group active:scale-95"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e25561" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="3 6 5 6 21 6"/>
-              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-            </svg>
+            <Icon name="trash" size={14} className="group-hover:rotate-12 transition-transform" />
             Xóa tất cả
           </button>
         )}
       </div>
 
       {histMovies.length === 0 ? (
-        <div style={{ textAlign: "center", padding: "80px 0", color: "#9896a0" }}>
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
-          <p style={{ marginTop: 16, fontSize: 16 }}>Chưa có lịch sử xem phim</p>
+        <div className="text-center py-32 text-text-muted bg-bg-2 rounded-3xl border border-dashed border-border">
+          <div className="w-20 h-20 rounded-full bg-bg-3 flex items-center justify-center mb-6 mx-auto">
+            <Icon name="history" size={36} className="opacity-20" />
+          </div>
+          <p className="text-lg font-bold text-text mb-2">Chưa có lịch sử xem phim</p>
+          <p className="text-sm">Hãy khám phá các bộ phim mới ngay hôm nay</p>
         </div>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <div className="flex flex-col gap-3">
           {histMovies.map((m, i) => (
             <div
               key={m.id}
               onClick={() => onSelect(m)}
-              style={{
-                display: "flex", gap: 14, background: "#1a1a24",
-                borderRadius: 10, padding: 12, cursor: "pointer",
-                border: "1px solid rgba(255,255,255,0.07)",
-                transition: "border-color 0.2s", alignItems: "center",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#c0392b")}
-              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)")}
+              className="flex gap-5 bg-bg-2 hover:bg-bg-3 border border-border rounded-2xl p-3.5 cursor-pointer transition-all items-center group relative overflow-hidden"
             >
-              <div style={{ width: 60, height: 88, borderRadius: 6, overflow: "hidden", flexShrink: 0, background: "#111118" }}>
-                <img src={m.thumb} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} onError={(e) => ((e.target as HTMLImageElement).style.display = "none")} />
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              
+              <div className="w-[70px] h-[100px] rounded-xl overflow-hidden shrink-0 bg-bg-4 shadow-lg group-hover:shadow-accent/10 transition-all relative z-10">
+                <img src={m.thumb} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 4, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: "#f0eee8" }}>{m.title}</div>
-                <div style={{ display: "flex", gap: 10, color: "#9896a0", fontSize: 12, marginBottom: 5 }}>
-                  <span style={{ color: "#d4a853", display: "flex", alignItems: "center", gap: 3 }}>
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="#d4a853" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+
+              <div className="flex-1 min-w-0 relative z-10">
+                <div className="font-black text-[15px] mb-1.5 truncate text-text group-hover:text-accent transition-colors uppercase tracking-tight">
+                  {m.title}
+                </div>
+                <div className="flex items-center gap-3 text-text-muted text-[12px] font-bold mb-3">
+                  <span className="text-gold flex items-center gap-1">
+                    <Icon name="star" size={12} className="fill-gold" />
                     {m.rating}
                   </span>
-                  <span>{m.year} · {m.duration}</span>
+                  <span className="w-1 h-1 rounded-full bg-white/10" />
+                  <span>{m.year}</span>
+                  <span className="w-1 h-1 rounded-full bg-white/10" />
+                  <span>{m.duration}</span>
                 </div>
-                <div style={{ height: 3, background: "rgba(255,255,255,0.08)", borderRadius: 2 }}>
-                  <div style={{ width: `${35 + i * 5}%`, height: "100%", background: "#c0392b", borderRadius: 2 }} />
+                
+                <div className="flex flex-col gap-1.5 w-full max-w-[200px]">
+                   <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-accent rounded-full shadow-[0_0_10px_rgba(192,57,43,0.5)]" 
+                        style={{ width: `${35 + i * 5}%` }} 
+                      />
+                   </div>
+                   <div className="text-[10px] text-text-muted font-black uppercase tracking-widest opacity-60">
+                      Đã xem {35 + i * 5}%
+                   </div>
                 </div>
-                <div style={{ fontSize: 11, color: "#9896a0", marginTop: 4 }}>Đã xem {35 + i * 5}%</div>
               </div>
+
               <button
                 onClick={(e) => { e.stopPropagation(); onPlay ? onPlay(m, 1) : onSelect(m); }}
-                style={{
-                  background: "#c0392b", border: "none", borderRadius: 7,
-                  padding: "7px 14px", color: "#fff", fontSize: 12, fontWeight: 700,
-                  cursor: "pointer", display: "flex", alignItems: "center", gap: 5, flexShrink: 0,
-                }}
+                className="bg-accent hover:bg-accent-hover px-6 py-3 rounded-xl text-white text-[12px] font-black uppercase tracking-widest transition-all flex items-center gap-2.5 shrink-0 shadow-lg shadow-accent/20 group/btn active:scale-95 relative z-10"
               >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="5,3 19,12 5,21"/></svg>
+                <Icon name="play" size={14} className="fill-white group-hover/btn:scale-125 transition-transform" />
                 Tiếp tục
               </button>
             </div>

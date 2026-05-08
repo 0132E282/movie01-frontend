@@ -10,22 +10,42 @@ import VideoPlayer from "@/components/VideoPlayer";
 import { useAppContext } from "@/context/AppContext";
 import { getMovieUrl, getWatchUrl } from "@/lib/routes";
 import { Badge } from "@/components/ui/badge";
+import { useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-export default function WatchClient({ 
-  movie, 
-  currentEp, 
-  related 
-}: { 
-  movie: Movie; 
-  currentEp: number; 
-  related: Movie[]; 
+export default function WatchClient({
+  movie,
+  currentEp,
+  related
+}: {
+  movie: Movie;
+  currentEp: number;
+  related: Movie[];
 }) {
   const router = useRouter();
   const { addToHistory } = useAppContext();
 
   const [currentEpIndex, setCurrentEpIndex] = useState(Math.max(0, currentEp - 1));
   const [currentServerIndex, setCurrentServerIndex] = useState(0);
+  const [selectedLang, setSelectedLang] = useState("");
+  const searchParams = useSearchParams();
+  const langParam = searchParams.get("lang");
+
+  // Initialize selectedLang based on query param or the first available server
+  useEffect(() => {
+    const defaultLang = movie?.episodes?.[0]?.server?.[0]?.title || "";
+    const lang = langParam || defaultLang;
+    
+    if (lang) {
+      setSelectedLang(lang);
+      // Find server index for the selected language in the active episode
+      const activeEp = movie.episodes[currentEpIndex] || movie.episodes[0];
+      if (activeEp) {
+        const idx = activeEp.server.findIndex(s => s.title === lang);
+        if (idx !== -1) setCurrentServerIndex(idx);
+      }
+    }
+  }, [movie?.id, langParam]);
 
   useEffect(() => {
     if (movie) {
@@ -44,7 +64,18 @@ export default function WatchClient({
 
   const handlePlay = (m: Movie, epIndex: number) => {
     setCurrentEpIndex(epIndex);
-    setCurrentServerIndex(0);
+
+    // Maintain the selected language when switching episodes
+    const nextEpisode = m.episodes[epIndex];
+    if (nextEpisode) {
+      const langIdx = nextEpisode.server.findIndex(s => s.title === selectedLang);
+      if (langIdx !== -1) {
+        setCurrentServerIndex(langIdx);
+      } else {
+        setCurrentServerIndex(0); // Fallback if preferred lang not found
+      }
+    }
+
     router.push(getWatchUrl(m.slug, epIndex + 1));
   };
 
@@ -53,30 +84,22 @@ export default function WatchClient({
   };
 
   return (
-    <MainLayout>
+    <MainLayout transparentBreadcrumb>
       <Navbar />
-      <div className="pt-14 min-h-screen bg-bg">
-        <div className="mx-auto max-w-[1300px] px-6 py-10 animate-in fade-in duration-500">
-          <div className="grid grid-cols-[1fr_320px] gap-10 items-start">
-            <div className="min-w-0">
-              <div className="flex gap-3 mb-6 flex-wrap">
-                {activeEpisode?.server.map((s, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentServerIndex(idx)}
-                    className={cn(
-                      "px-5 py-2.5 rounded-xl text-[13px] font-black transition-all border flex items-center gap-2.5 whitespace-nowrap shadow-sm",
-                      currentServerIndex === idx 
-                        ? "bg-accent border-accent text-white shadow-lg shadow-accent/25 scale-[1.02]" 
-                        : "bg-bg-3 border-white/5 text-text-muted hover:border-white/20 hover:text-text hover:bg-bg-4"
-                    )}
-                  >
-                    <Icon name="server" size={15} />
-                    {s.title}
-                  </button>
-                ))}
-              </div>
+      <div className="min-h-screen bg-bg relative">
+        {/* Immersive Backdrop Overlay */}
+        <div className="absolute inset-0 h-[50vh] overflow-hidden pointer-events-none">
+          <img
+            src={movie.backdrop || movie.thumb}
+            alt=""
+            className="w-full h-full object-cover opacity-10 blur-3xl scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
+        </div>
 
+        <div className="px-4 md:px-10 pb-16 relative z-20 container mx-auto max-w-[1300px] animate-in fade-in duration-700">
+          <div className="pt-2 lg:pt-4 grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-10 items-start">
+            <div className="min-w-0">
               <div className="rounded-xl overflow-hidden shadow-2xl border border-white/5 bg-black aspect-video mb-6 relative group">
                 <VideoPlayer
                   url={videoUrl}
@@ -124,27 +147,116 @@ export default function WatchClient({
                 </div>
               </div>
 
-              <div className="bg-bg-2 border border-white/5 rounded-xl overflow-hidden">
-                <div className="flex items-center gap-4 px-5 py-4 border-b border-white/5 bg-white/2">
-                  <span className="font-black text-[15px] text-text uppercase">
-                      {isSeries ? "Danh sách tập" : "Đang phát"}
-                  </span>
-                </div>
-                <div className="p-5 flex flex-wrap gap-2 max-h-[300px] overflow-y-auto hide-scroll">
-                  {movie.episodes.map((ep, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handlePlay(movie, idx)}
-                      className={cn(
-                        "min-w-[54px] h-[38px] px-3 rounded-lg text-[13px] font-bold transition-all border",
-                        currentEpIndex === idx 
-                          ? "bg-accent border-accent text-white shadow-lg shadow-accent/20" 
-                          : "bg-bg-3 border-white/5 text-text-muted hover:border-white/20 hover:text-text"
+              <div className="bg-bg-2 border border-white/5 rounded-xl overflow-hidden shadow-xl">
+                <div className="flex flex-col">
+                  {/* Language Selection Section */}
+                  <div className="px-5 py-4 border-b border-white/5 bg-white/2">
+                    <span className="font-black text-[14px] text-white uppercase tracking-wider flex items-center gap-2">
+                       <div className="w-1 h-5 bg-accent rounded-full" />
+                       Chọn phiên bản phim
+                    </span>
+                  </div>
+                  <div className="p-5 flex flex-wrap gap-3 border-b border-white/5 bg-bg-2/50">
+                    {Array.from(new Set(movie.episodes.flatMap(ep => ep.server.map(s => s.title)))).map((lang, idx) => {
+                      let displayLang = lang;
+                      if (lang.toLowerCase().includes("server")) {
+                        displayLang = idx === 0 ? "Việt SUB" : "Thuyết Minh";
+                      }
+                      return (
+                        <button
+                          key={lang}
+                          onClick={() => {
+                            setSelectedLang(lang);
+                            const serverIdx = activeEpisode.server.findIndex(s => s.title === lang);
+                            if (serverIdx !== -1) setCurrentServerIndex(serverIdx);
+                          }}
+                          className={cn(
+                            "px-8 py-3 rounded-xl text-[13px] font-black transition-all border flex items-center justify-center gap-3",
+                            selectedLang === lang
+                              ? "bg-accent border-accent text-white shadow-lg shadow-accent/20"
+                              : "bg-white/5 border-white/10 text-text-muted hover:bg-white/10 hover:border-white/20 hover:text-white"
+                          )}
+                        >
+                          {displayLang.toUpperCase()}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Episode Selection Section (Series Only) */}
+                  {isSeries && (
+                    <>
+                      <div className="px-5 py-4 border-b border-white/5 bg-white/2 flex items-center justify-between">
+                        <span className="font-black text-[14px] text-white uppercase tracking-wider flex items-center gap-2">
+                          <div className="w-1 h-5 bg-accent rounded-full" />
+                          Danh sách tập phim
+                        </span>
+                        
+                        {/* Compact Search for episodes */}
+                        <div className="relative group hidden md:block">
+                          <input 
+                            type="text" 
+                            placeholder="Tìm tập..." 
+                            className="bg-bg-3 border border-white/5 rounded-lg py-1.5 pl-8 pr-3 text-[12px] w-32 focus:w-48 focus:border-accent/50 outline-none transition-all text-white"
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              if (!val) return;
+                              const epNum = parseInt(val);
+                              if (!isNaN(epNum) && epNum > 0 && epNum <= movie.episodes.length) {
+                                // Optional: logic to scroll to episode or just highlight
+                              }
+                            }}
+                          />
+                          <div className="absolute left-2.5 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-accent transition-colors">
+                            <Icon name="search" size={12} />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Episode Range Tabs (for large series) */}
+                      {movie.episodes.length > 50 && (
+                         <div className="px-5 py-2 border-b border-white/5 bg-bg-2/30 flex gap-2 overflow-x-auto scrollbar-none">
+                            {Array.from({ length: Math.ceil(movie.episodes.length / 50) }).map((_, i) => (
+                              <button 
+                                key={i}
+                                className={cn(
+                                  "px-3 py-1 rounded-md text-[11px] font-black uppercase tracking-widest whitespace-nowrap border transition-all",
+                                  "bg-bg-3 border-white/5 text-text-muted hover:text-white"
+                                )}
+                              >
+                                {i * 50 + 1} - {Math.min((i + 1) * 50, movie.episodes.length)}
+                              </button>
+                            ))}
+                         </div>
                       )}
-                    >
-                      {ep.title}
-                    </button>
-                  ))}
+
+                      <div className="p-5">
+                        <div className="grid grid-cols-[repeat(auto-fill,minmax(58px,1fr))] gap-2 max-h-[400px] overflow-y-auto scrollbar-thin pr-2">
+                          {movie.episodes.map((ep, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => handlePlay(movie, idx)}
+                              className={cn(
+                                "h-11 flex flex-col items-center justify-center rounded-xl text-[13px] font-black transition-all border relative overflow-hidden",
+                                currentEpIndex === idx 
+                                  ? "bg-accent border-accent text-white shadow-lg shadow-accent/30 scale-105 z-10" 
+                                  : "bg-bg-3 border-white/5 text-text-muted hover:bg-bg-4 hover:border-white/20 hover:text-text"
+                              )}
+                            >
+                              <span className="relative z-10">{ep.title.replace("Tập ", "")}</span>
+                              {currentEpIndex === idx && (
+                                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+                              )}
+                            </button>
+                          ))}
+                        </div>
+                        <div className="mt-4 text-[11px] text-text-muted font-bold flex items-center gap-2 opacity-50 italic">
+                           <Icon name="info" size={12} />
+                           Mẹo: Bạn có thể sử dụng phím mũi tên để chuyển tập nhanh.
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

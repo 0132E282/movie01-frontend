@@ -3,10 +3,8 @@ import { useRouter } from "@/i18n/routing";
 import { Link } from "@/i18n/routing";
 import { slugify } from "@/data/movies";
 import type { Movie } from "@/types";
-import Navbar from "@/components/Navbar";
-import HeroBanner from "@/components/HeroBanner";
 import MovieRow from "@/components/movie/MovieRow";
-import MainLayout from "@/layouts/MainLayout";
+import HomePageLayout from "@/layouts/HomePageLayout";
 import { useAppContext } from "@/context/AppContext";
 import { getMovieUrl, getWatchUrl, getGenreUrl } from "@/lib/routes";
 
@@ -57,56 +55,51 @@ export default function HomeClient({
   };
 
   return (
-    <MainLayout hideBreadcrumb={true}>
-      <Navbar />
-      <div className="min-h-screen bg-bg">
-        <HeroBanner
-          movies={movies}
-          onPlay={handlePlay}
-          onDetail={handleSelect}
-          onToggleFavorite={toggleFavorite}
-          favorites={favorites}
-        />
-        <div className="px-4 md:px-10 pb-12 mt-4 md:mt-8 relative z-20">
-          {/* Genre categories - Simplified Premium UI */}
-          <div className="mb-10 md:mb-16">
-            <div className="flex items-center justify-between mb-5 md:mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-1.5 h-6 bg-accent rounded-full" />
-                <h2 className="text-xl font-black tracking-tight text-white uppercase">Thể Loại Phim</h2>
-              </div>
-              <Link href="/catalog" className="text-sm font-bold text-text-muted hover:text-accent transition-colors flex items-center gap-2 group">
-                Xem tất cả <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
+    <HomePageLayout
+      movies={movies}
+      onPlay={handlePlay}
+      onDetail={handleSelect}
+      onToggleFavorite={toggleFavorite}
+      favorites={favorites}
+    >
+      <div className="px-4 md:px-10 pb-12 mt-4 md:mt-8 relative z-20 container mx-auto max-w-[1300px]">
+        <div className="mb-10 md:mb-16">
+          <div className="flex items-center justify-between mb-5 md:mb-8">
+            <div className="flex items-center gap-3">
+              <div className="w-1.5 h-6 bg-accent rounded-full" />
+              <h2 className="text-xl font-black tracking-tight text-white uppercase">Thể Loại Phim</h2>
             </div>
-
-            <div className="flex overflow-x-auto hide-scroll gap-3 md:grid md:grid-cols-4 lg:grid-cols-8 pb-2">
-              {genreCategories.map((c) => (
-                <Link
-                  key={c.genre}
-                  href={getGenreUrl(slugify(c.genre))}
-                  className="group shrink-0 w-[140px] md:w-full"
-                >
-                  <div className="relative bg-bg-2 border border-white/5 rounded-xl px-4 py-3.5 transition-all duration-300 group-hover:bg-bg-3 group-hover:border-accent/30 group-hover:-translate-y-1 flex items-center justify-center overflow-hidden h-full">
-                    <span className="relative z-10 text-[13.5px] font-bold text-text group-hover:text-white transition-colors text-center">
-                      {c.label}
-                    </span>
-
-                    {/* Subtle hover indicator */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <Link href="/catalog" className="text-sm font-bold text-text-muted hover:text-accent transition-colors flex items-center gap-2 group">
+              Xem tất cả <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
           </div>
 
-          <MovieRow title="Phim Nổi Bật" movies={featuredMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} />
-          <MovieRow title="Phim Mới Nhất" movies={newMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} onViewAll={handleViewCategory} category="Tất cả" />
-          <MovieRow title="Phim Đánh Giá Cao" movies={topRated} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} />
-          {actionMovies.length > 0 && <MovieRow title="Phim Hành Động" movies={actionMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} onViewAll={handleViewCategory} category="Hành động" />}
-          {animatedMovies.length > 0 && <MovieRow title="Phim Hoạt Hình" movies={animatedMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} onViewAll={handleViewCategory} category="Hoạt hình" />}
+          <div className="flex overflow-x-auto hide-scroll gap-3 md:grid md:grid-cols-4 lg:grid-cols-8 pb-2">
+            {genreCategories.map((c) => (
+              <Link
+                key={c.genre}
+                href={getGenreUrl(slugify(c.genre))}
+                className="group shrink-0 w-[140px] md:w-full"
+              >
+                <div className="relative bg-bg-2 border border-white/5 rounded-xl px-4 py-3.5 transition-all duration-300 group-hover:bg-bg-3 group-hover:border-accent/30 group-hover:-translate-y-1 flex items-center justify-center overflow-hidden h-full">
+                  <span className="relative z-10 text-[13.5px] font-bold text-text group-hover:text-white transition-colors text-center">
+                    {c.label}
+                  </span>
+
+                  {/* Subtle hover indicator */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
+
+        <MovieRow title="Phim Nổi Bật" movies={featuredMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} />
+        <MovieRow title="Phim Mới Nhất" movies={newMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} onViewAll={handleViewCategory} category="Tất cả" />
+        <MovieRow title="Phim Đánh Giá Cao" movies={topRated} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} />
+        {actionMovies.length > 0 && <MovieRow title="Phim Hành Động" movies={actionMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} onViewAll={handleViewCategory} category="Hành động" />}
+        {animatedMovies.length > 0 && <MovieRow title="Phim Hoạt Hình" movies={animatedMovies} onSelect={handleSelect} onToggleFavorite={toggleFavorite} favorites={favorites} onViewAll={handleViewCategory} category="Hoạt hình" />}
       </div>
-    </MainLayout>
+    </HomePageLayout>
   );
 }
